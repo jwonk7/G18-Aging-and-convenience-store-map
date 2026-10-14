@@ -306,9 +306,10 @@ p,li,dd,.why,.note,.cmp,.body-d,.method span,.ql{text-wrap:pretty}
 /* ---------- 지도 분석 page ---------- */
 .tip .tipg{display:flex;align-items:center;gap:6px;margin:2px 0 6px;font-size:12px;color:var(--ink-80)}
 .tip .tipg i{width:10px;height:10px;border-radius:50%;border:1px solid #d2d2d7;display:inline-block}
-.qgrid{display:grid;grid-template-columns:28px 1fr 1fr;gap:6px;margin:12px 0 4px}
+.qgrid{display:grid;grid-template-columns:52px minmax(0,1fr) minmax(0,1fr);gap:6px;margin:12px 0 4px}
 .qax{font-size:12px;color:var(--body-muted);text-align:center;letter-spacing:-0.12px}
-.qax.qy{writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center}
+.qax.qy{display:flex;align-items:center;justify-content:flex-end;text-align:right;padding-right:4px;line-height:1.3;word-break:keep-all}
+.qax.qx{padding-top:2px}
 .qcell{display:flex;flex-direction:column;align-items:flex-start;gap:4px;background:var(--tile-3);border:1px solid #3a3a3c;border-radius:var(--r-md,11px);padding:10px 12px;color:var(--body-on-dark);font-family:inherit;text-align:left;cursor:pointer;transition:transform .12s ease}
 .qcell:active{transform:scale(0.95)}
 .qcell.fit{border-color:#1f4f80}
@@ -748,6 +749,9 @@ footer li{font-size:14px;letter-spacing:-0.224px}
 .bdg.below{background:#e8f1fb;color:#0058b0}.bdg.in{background:#f0f0f2;color:#333}.bdg.cross{background:#fff4e5;color:#8a4b00}
 .src{font-size:12px;font-weight:600;padding:3px 8px;border-radius:6px;white-space:nowrap}
 .src.team{background:#e8f1fb;color:#0058b0}.src.calc{background:#f0f0f2;color:#555}
+.srclegend{margin-top:14px;padding:14px 16px;border-radius:11px;background:var(--parchment,#f5f5f7);display:grid;gap:8px;font-size:13px;line-height:1.5;color:var(--ink-80,#333)}
+.srclegend b{font-size:13px;font-weight:600;color:var(--ink,#1d1d1f)}
+.srclegend p{margin:0;word-break:keep-all}.srclegend .src{display:inline-block;margin-right:8px;vertical-align:1px}
 .muted{color:var(--ink-48)}
 .tags{margin-left:8px;font-size:11px;font-weight:600;color:#555;background:#f0f0f2;border-radius:999px;padding:2px 8px;vertical-align:1px}
 .readgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-lg)}
@@ -1715,20 +1719,20 @@ function MapView({mode,active,hover,setHover,pin,pinned}){
   const track=e=>{const r=wrapRef.current.getBoundingClientRect(); setTp({x:e.clientX-r.left,y:e.clientY-r.top,w:r.width,h:r.height});}; const {v,handlers,zoomCenter,reset,moved}=useZoom(svgRef);
   const m=MODES[mode];
   const order=useMemo(()=>[...PTS].sort((a,b)=>(b.c||0)-(a.c||0)),[]);
-  const rScale=Math.pow(v.k,-0.65);
+  const rScale=Math.pow(v.k,-0.65); const pinRef=useRef(pinned); pinRef.current=pinned;
   return h('div',null,
     h('div',{className:'mapwrap',ref:wrapRef,onPointerMove:track,onPointerDown:track,onPointerLeave:()=>setTp(null)},
       h('svg',Object.assign({ref:svgRef,viewBox:`${VB.x} ${VB.y} ${VB.w} ${VB.h}`,role:'img','aria-label':L(`전국 시군구 지도. 점 크기는 인구 1,000명당 편의점 수, 밝기는 ${m.label}.`,`Map of all districts. Dot size = stores per 1,000 residents, brightness = ${tr(m.label)}.`),
         style:{touchAction:v.k>1?'none':'pan-y'},onMouseLeave:()=>setHover(null)},handlers),
         h('g',{transform:`translate(${v.tx} ${v.ty}) scale(${v.k})`},
-          h('path',{className:'land',d:GEO.land,style:{strokeWidth:1/v.k}}),
-          order.map(p=>{
-            const isA=active&&active.n===p.n;
-            if(p.c==null) return h('circle',{key:p.n,cx:p.x,cy:p.y,r:2*rScale,style:{fill:'#5a5a5f'},onPointerEnter:()=>setHover(p),onClick:()=>{if(!moved.current)pin(p)}});
-            const r=baseR(p.c)*rScale*(isA?1.6:1);
-            return h('circle',{key:p.n,className:'dot',cx:p.x,cy:p.y,r,style:{'--d':Math.round(p.y*1.3),fill:isA?'var(--primary-on-dark)':binCol(m.key,p[m.key]),stroke:isA?'#fff':'var(--tile-3)',strokeWidth:(isA?1.6:0.6)*rScale},
-              onPointerEnter:()=>setHover(p),onClick:()=>{if(!moved.current)pin(p===pinned?null:p)}});
-          }),
+          useMemo(()=>h('g',null,
+            h('path',{className:'land',d:GEO.land,style:{strokeWidth:1/v.k}}),
+            order.map(p=>{
+              if(p.c==null) return h('circle',{key:p.n,cx:p.x,cy:p.y,r:2*rScale,style:{fill:'#5a5a5f'},onPointerEnter:()=>setHover(p),onClick:()=>{if(!moved.current)pin(p)}});
+              return h('circle',{key:p.n,className:'dot',cx:p.x,cy:p.y,r:baseR(p.c)*rScale,style:{'--d':Math.round(p.y*1.3),fill:binCol(m.key,p[m.key]),stroke:'var(--tile-3)',strokeWidth:0.6*rScale},
+                onPointerEnter:()=>setHover(p),onClick:()=>{if(!moved.current)pin(p===pinRef.current?null:p)}});
+            })),[v.k,mode]),
+          active&&h('circle',{cx:active.x,cy:active.y,r:(active.c!=null?baseR(active.c)*1.6:3.2)*rScale,style:{fill:'var(--primary-on-dark)',stroke:'#fff',strokeWidth:1.6*rScale,pointerEvents:'none'}}),
           active&&h('circle',{cx:active.x,cy:active.y,r:(active.c?baseR(active.c)*1.9:4)*rScale+4*rScale,style:{fill:'none',stroke:'var(--primary-on-dark)',strokeWidth:1.2*rScale,pointerEvents:'none'}}))),
       hover&&tp&&(()=>{const W=184,H=96,off=14; const left=tp.x+off+W>tp.w?tp.x-off-W:tp.x+off; const top=tp.y+off+H>tp.h?tp.y-off-H:tp.y+off;
         return h('div',{className:'tip',style:{left:Math.max(4,left)+'px',top:Math.max(4,top)+'px'},role:'tooltip'},
@@ -1757,18 +1761,20 @@ function Strip({k,active,unit,dec,lo,hi,label,setHover}){
   const x=v=>P+(clamp(v,mn,mx)-mn)/(mx-mn)*(W-2*P);
   const jit=i=>14+((i*7919)%29);
   const m=k==='c'?M_C:M_O;
-  return h('svg',{ref,className:'strip',viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':L(`${label} 분포: 226개 시군구, 평균 ${m.toFixed(dec)}${unit}`,`${tr(label)} distribution: 226 districts, average ${m.toFixed(dec)}${unit}`)},
+  return h('svg',{ref,className:'strip',onPointerLeave:()=>setHover(null),viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':L(`${label} 분포: 226개 시군구, 평균 ${m.toFixed(dec)}${unit}`,`${tr(label)} distribution: 226 districts, average ${m.toFixed(dec)}${unit}`)},
     h('line',{x1:P,x2:W-P,y1:50,y2:50,style:{stroke:'#3a3a3c'}}),
-    DATA.map((p,i)=>h('circle',{key:p.n,cx:x(p[k]),cy:jit(i),r:2.3,style:{fill:binCol(k,p[k]),opacity:active&&active.n!==p.n?.55:.9,cursor:'pointer'},onPointerEnter:()=>setHover(p)})),
+    useMemo(()=>h('g',null,DATA.map((p,i)=>h('circle',{key:p.n,cx:x(p[k]),cy:jit(i),r:2.3,style:{fill:binCol(k,p[k]),opacity:.9,cursor:'pointer'},onPointerEnter:()=>setHover(p)}))),[W,k]),
     h('line',{x1:x(m),x2:x(m),y1:6,y2:52,style:{stroke:'#ffffff',strokeWidth:1.2,strokeDasharray:'2 2'}}),
     h('text',{x:clamp(x(m),20,W-40),y:62,textAnchor:'middle'},L('평균 ','avg ')+m.toFixed(dec)+unit),
     h('text',{x:P,y:62},mn+unit), h('text',{x:W-P,y:62,textAnchor:'end'},mx+unit),
     active&&active[k]!=null&&h('circle',{cx:x(active[k]),cy:30,r:6,style:{fill:'var(--primary-on-dark)',stroke:'#fff',strokeWidth:1.5}}));
 }
 
+let _pick=null; const pickOpts=()=>{if(!_pick){const col=new Intl.Collator(LANG); _pick=[...DATA].sort((p,q)=>col.compare(nm(p.n),nm(q.n)));} return _pick;};
 function Readout({active,pinned,clear,setHover,pin}){
   const a=active&&active.c!=null?active:null;
   const ex=active&&active.c==null;
+  const aN=a?a.n:null, aT=a?a.t:null; const pinRef=useRef(pinned); pinRef.current=pinned;
   const sorted=useMemo(()=>[...DATA].sort((p,q)=>TYPES.findIndex(t=>t[0]===p.t)-TYPES.findIndex(t=>t[0]===q.t)||q.c-p.c),[]);
   const rel=(v,m)=>{const d=(v/m-1)*100; return L('평균보다 '+Math.abs(d).toFixed(0)+'% '+(d>=0?'높음':'낮음'),Math.abs(d).toFixed(0)+'% '+(d>=0?'above':'below')+' average');};
   return h('div',{className:'side','aria-live':'polite'},
@@ -1776,9 +1782,9 @@ function Readout({active,pinned,clear,setHover,pin}){
       h('p',{className:'k'},a||ex?(pinned?'고정한 지역':'선택한 지역'):'전국',pinned?h('button',{className:'btn btn-secondary btn-sm',style:{borderColor:'var(--primary-on-dark)',color:'var(--primary-on-dark)'},onClick:clear},'고정 해제'):h('span',null,'2025.12 기준')),
       h('p',{className:'who'},ex?active.n:(a?a.n:'226개 시군구'),h('small',null,ex?'분석 제외':(a?a.t:'지역 평균'))),
       h('label',{htmlFor:'pick',className:'sr'},L('지역 고르기','Choose a district')),
-      h('select',{id:'pick',className:'pick',value:pinned?pinned.n:'',onChange:e=>pin(e.target.value?byName(e.target.value):null)},
+      useMemo(()=>h('select',{id:'pick',className:'pick',value:pinned?pinned.n:'',onChange:e=>pin(e.target.value?byName(e.target.value):null)},
         h('option',{value:''},L('지역을 선택해 수치 보기…','Pick a district to see its numbers…')),
-        [...DATA].sort((p,q)=>nm(p.n).localeCompare(nm(q.n),LANG)).map(p=>h('option',{key:p.n,value:p.n},nm(p.n))))),
+        pickOpts().map(p=>h('option',{key:p.n,value:p.n},nm(p.n)))),[pinned,pin])),
     h('div',{className:'card'},
       h('p',{className:'k'},'1,000명당 편의점',h('span',null,a?'이 지역':'지역 평균')),
       h('p',{className:'big'},(a?a.c:M_C).toFixed(2),h('u',null,'개')),
@@ -1791,8 +1797,8 @@ function Readout({active,pinned,clear,setHover,pin}){
       h(Strip,{k:'o',active:a,unit:'%',dec:1,lo:10,hi:50,label:'고령 비율',setHover})),
     h('div',{className:'card'},
       h('p',{className:'k'},'지도의 점',h('span',null,'226칸 = 시군구 226곳')),
-      h('div',{className:'waffle',role:'img','aria-label':L(`자치구 ${COUNTS['자치구']}, 시 ${COUNTS['시']}, 군 ${COUNTS['군']}`,`gu ${COUNTS['자치구']}, si ${COUNTS['시']}, gun ${COUNTS['군']}`)},
-        sorted.map(p=>h('i',{key:p.n,title:p.n,onPointerEnter:()=>setHover(p),style:{background:a&&a.n===p.n?'var(--primary-on-dark)':TYPECOL[p.t],opacity:a&&a.t!==p.t?.35:1,cursor:'pointer'}}))),
+      h('div',{className:'waffle',onPointerLeave:()=>setHover(null),role:'img','aria-label':L(`자치구 ${COUNTS['자치구']}, 시 ${COUNTS['시']}, 군 ${COUNTS['군']}`,`gu ${COUNTS['자치구']}, si ${COUNTS['시']}, gun ${COUNTS['군']}`)},
+        useMemo(()=>sorted.map(p=>h('i',{key:p.n,title:nm(p.n),onPointerEnter:()=>setHover(p),onClick:()=>pin(p===pinRef.current?null:p),style:{background:aN===p.n?'var(--primary-on-dark)':TYPECOL[p.t],opacity:aT&&aT!==p.t?.35:1,cursor:'pointer'}})),[aN,aT])),
       h('div',{className:'wlegend'},TYPES.map(([t,c])=>h('span',{key:t},h('b',{style:{background:c}}),tr(t)+' ',h('em',null,COUNTS[t])))),
       h('p',{className:'note'},'세종시, 제주시, 서귀포시는 행정 구조가 달라 이번 분석에서 제외했습니다(지도의 작은 회색 점).')));
 }
@@ -1817,7 +1823,11 @@ function MapGuide({pin,setMode}){
     h('button',{onClick:()=>{go(c.b[1],c.b[2]); const el=document.getElementById('map'); el&&el.scrollIntoView({behavior:'smooth'});}},c.b[0]+' →'))));
 }
 function MapTile(){
-  const [mode,setMode]=useState('o'); const [hover,setHover]=useState(null); const [pinned,setPinned]=useState(null);
+  const [mode,setMode]=useState('o'); const [hover,setHoverRaw]=useState(null); const [pinned,setPinnedRaw]=useState(null);
+  const hq=useRef({raf:0,next:null});
+  const setHover=useCallback(p=>{const q=hq.current; q.next=p; if(q.raf) return;
+    q.raf=requestAnimationFrame(()=>{q.raf=0; setHoverRaw(o=>o===q.next?o:q.next);});},[]);
+  const setPinned=useCallback(p=>{const q=hq.current; if(q.raf){cancelAnimationFrame(q.raf); q.raf=0;} setHoverRaw(null); setPinnedRaw(p);},[]);
   const active=hover||pinned;
   return h('section',{className:'dark tile',id:'map'},h('div',{className:'container'},
     h('h2',null,'226개의 불빛'),
@@ -2254,7 +2264,7 @@ function QuadGrid({filter,sel,setSel}){
       h('div',{className:'qgrid'},
         h('span',{className:'qax qy'},'편의점 많음'),cell('Yc'),cell('OC'),
         h('span',{className:'qax qy'},'편의점 적음'),cell('YC'),cell('Oc'),
-        h('span'),h('span',{className:'qax'},'노인 적음'),h('span',{className:'qax'},'노인 많음')),
+        h('span'),h('span',{className:'qax qx'},'노인 적음'),h('span',{className:'qax qx'},'노인 많음')),
       h('p',{className:'note'},'파란 칸이 통념과 맞는 지역입니다. 칸을 누르면 지도에 해당 지역만 표시됩니다.')),
     h('div',{className:'card'},
       h('p',{className:'k'},'통념과 맞는 지역',h('span',null,filter==='all'?'전국':TYPE_TABS.find(t=>t[0]===filter)[1])),
@@ -2454,7 +2464,7 @@ function Dashboard(){
       h(Forest,{rows:ci,hover,setHover})),
     h('div',{className:'ucard dashcard'},
       h('div',{className:'dhead'},h('h3',null,L('검정별 결과표','Results by test')),
-        h('p',{className:'why'},L('팀 = 팀 분석 결과(OLS_Results, DML_Results 파일) · 재계산 = 이 사이트의 226개 시군구 표로 다시 계산한 RQ1·상관·카이제곱 검정. 회귀의 p값은 HC3 강건 표준오차 기준이라, 같은 관계의 상관 p값과 조금 다릅니다. ‘DML 민감도’ 두 줄은 학습 알고리즘만 바꿔 본 점검으로, 최종 결과가 아닙니다.','Team = the team’s result files (OLS and DML) · Recomputed = RQ1, correlation and chi-square tests recalculated from this site’s 226-district table. Regression p-values use HC3 robust errors, so they differ slightly from the correlation p-values for the same link. The two “DML check” rows only swap the learner; they are not the final result.'))),
+        h('p',{className:'why'},L('회귀의 p값은 HC3 강건 표준오차 기준이라, 같은 관계의 상관 p값과 조금 다릅니다. ‘DML 민감도’ 두 줄은 학습 알고리즘만 바꿔 본 점검으로, 최종 결과가 아닙니다.','Regression p-values use HC3 robust errors, so they differ slightly from the correlation p-values for the same link. The two “DML check” rows only swap the learner; they are not the final result.'))),
       h('div',{className:'rwrap'},h('table',{className:'rtable dtests'},
         h('thead',null,h('tr',null,[L('검정','Test'),'n',L('통계량 / 추정치','Statistic / estimate'),'p',L('유의성 (5%)','Significance (5%)'),L('기준 ±0.1','Threshold ±0.1'),L('출처','Source')].map((t,i)=>h('th',{key:i,scope:'col'},t)))),
         h('tbody',null,rows.map(t=>{const th=thrOf(t);
@@ -2465,7 +2475,10 @@ function Dashboard(){
             h('td',{className:'num'},t.p!=null?fmtP(t.p):(t.lo!=null?(isSig(t)?L('< 0.05 (구간)','< 0.05 (CI)'):L('≥ 0.05 (구간)','≥ 0.05 (CI)')):'—')),
             h('td',null,isSig(t)?h(Badge,{kind:'yes'},L('유의함','Significant')):h(Badge,{kind:'no'},L('유의하지 않음','Not significant'))),
             h('td',null,th==null?h('span',{className:'muted'},'—'):th==='below'?h(Badge,{kind:'below'},L('기준 아래','Below')):th==='in'?h(Badge,{kind:'in'},L('차이 없음','No difference')):h(Badge,{kind:'cross'},L('걸침','Straddles'))),
-            h('td',null,h('span',{className:'src '+t.src},t.src==='team'?L('팀','Team'):L('재계산','Recomputed'))));}))))),
+            h('td',null,h('span',{className:'src '+t.src,title:t.src==='team'?L('팀 분석 결과 파일(OLS_Results, DML_Results)에서 가져온 값','Taken from the team’s result files (OLS_Results, DML_Results)'):L('이 사이트의 226개 시군구 표로 직접 다시 계산한 값','Calculated directly from this site’s 226-district table')},t.src==='team'?L('팀 파일','Team files'):L('사이트 표','Site table'))));})))),
+      h('div',{className:'srclegend'},h('b',null,L('출처 보는 법','How to read “Source”')),
+        h('p',null,h('span',{className:'src team'},L('팀 파일','Team files')),L('팀이 분석한 결과 파일(OLS_Results, DML_Results)에 있는 값을 그대로 옮겼습니다. 회귀와 DML이 여기에 해당합니다.','Copied as-is from the team’s result files (OLS_Results, DML_Results). Covers the regressions and DML.')),
+        h('p',null,h('span',{className:'src calc'},L('사이트 표','Site table')),L('팀 결과 파일에 없는 검정이라, 이 사이트의 226개 시군구 표로 직접 계산했습니다(RQ1 t검정·Mann-Whitney, 상관, 카이제곱). 데이터 CSV로 누구나 다시 계산할 수 있습니다.','Not in the team’s result files, so calculated directly from this site’s 226-district table (RQ1 t-test and Mann-Whitney, correlations, chi-square). Anyone can redo them from the data CSV.')))),
     h('div',{className:'readgrid'},
       h('div',{className:'ucard'},h('h4',null,L('유의하지만 기준은 못 넘은 경우','Significant, but not past the threshold')),
         h('p',{className:'why'},L('다중 회귀(−0.19)는 구간에 0이 포함되지 않아 통계적으로 유의합니다. 하지만 구간의 끝(−0.06)이 기준선(−0.1)보다 안쪽이어서 ‘의미 있게 적다’고는 말할 수 없습니다.','Multiple regression (−0.19) excludes zero, so it is statistically significant. But its upper end (−0.06) sits inside the −0.1 line, so we cannot call the difference meaningful.'))),
