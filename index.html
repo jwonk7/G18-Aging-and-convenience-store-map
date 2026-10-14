@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -9,24 +9,24 @@
 <meta property="og:title" content="편의점 불빛 지도 · G18">
 <meta property="og:description" content="고령 인구가 많은 지역은 편의점이 적은가? 전국 226개 시군구 공공 통계로 검증했습니다.">
 <meta name="theme-color" content="#121214">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121214'/%3E%3Ccircle cx='32' cy='32' r='18' fill='%238fe6d5' opacity='.35'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%238fe6d5'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121214'/%3E%3Ccircle cx='32' cy='32' r='18' fill='%23a1a1a6' opacity='.35'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23ffffff'/%3E%3C/svg%3E">
 <style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: Apple tile stack (DESIGN.md) — global-nav 44 · sub-nav-frosted 52 · light hero tile · dark product tile (interactive map + readout cards) · parchment footer. Single-look system: light tiles and dark tiles are both part of the design. */
 :root{
   /* colors (DESIGN.md) */
-  --primary:#3346b5; --primary-focus:#4a5fe0; --primary-on-dark:#9aa8ff;
+  --primary:#0066cc; --primary-focus:#0071e3; --primary-on-dark:#2997ff;
   --ink:#1d1d1f; --body-on-dark:#ffffff; --body-muted:#cccccc; --ink-80:#333333; --ink-48:#7a7a7a;
   --divider-soft:#f0f0f0; --hairline:#e0e0e0; --canvas:#ffffff; --parchment:#f5f5f7; --pearl:#fafafc;
-  --tile-1:#101218; --tile-2:#181b23; --tile-3:#0b0d12; --black:#000000; --chip:#d2d2d7;
+  --tile-1:#272729; --tile-2:#2a2a2c; --tile-3:#252527; --black:#000000; --chip:#d2d2d7;
   /* data ramp on dark tiles: neutral greys only (no second accent) */
   --d0:#4a4a4f; --d1:#ffffff;
   /* type */
-  --f-display:"Hahmlet","Noto Serif KR","Noto Serif CJK KR","AppleMyungjo",serif;
-  --f-text:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans CJK KR",system-ui,sans-serif;
-  --f-mono:"IBM Plex Mono","IBM Plex Sans KR",ui-monospace,monospace;
+  --f-display:"Plus Jakarta Sans","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-text:"Plus Jakarta Sans","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:var(--f-text);
   /* radius */ --r-sm:8px; --r-md:11px; --r-lg:18px; --r-pill:9999px;
   /* spacing */ --s-xxs:4px; --s-xs:8px; --s-sm:12px; --s-md:17px; --s-lg:24px; --s-xl:32px; --s-xxl:48px; --s-section:80px;
   color-scheme:light;
@@ -77,7 +77,7 @@ html{scroll-padding-top:calc(96px + env(safe-area-inset-top,0px))}
 .btn-sm{font-size:14px;letter-spacing:-0.224px;padding:7px 15px;min-height:32px}
 .icon-btn{width:44px;height:44px;border-radius:50%;border:0;background:rgba(210,210,215,.64);color:var(--ink);font-size:20px;line-height:1;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .12s ease;font-family:var(--f-text)}
 .icon-btn:active{transform:scale(.95)}
-.chip{border-radius:var(--r-pill);padding:12px 16px;font-size:14px;letter-spacing:-0.224px;line-height:1;background:var(--tile-1);color:var(--body-muted);border:1px solid #2a303c;cursor:pointer;font-family:var(--f-text);transition:transform .12s ease}
+.chip{border-radius:var(--r-pill);padding:12px 16px;font-size:14px;letter-spacing:-0.224px;line-height:1;background:var(--tile-1);color:var(--body-muted);border:1px solid #3a3a3c;cursor:pointer;font-family:var(--f-text);transition:transform .12s ease}
 .chip:active{transform:scale(.95)}
 .chip[aria-pressed="true"]{border:2px solid var(--primary-focus);color:var(--body-on-dark);padding:11px 15px}
 
@@ -102,7 +102,7 @@ html{scroll-padding-top:calc(96px + env(safe-area-inset-top,0px))}
 .mapwrap{position:relative;background:var(--tile-3);border-radius:var(--r-lg);overflow:hidden;min-width:0}
 .mapwrap svg{display:block;width:100%;height:auto;cursor:grab;user-select:none;-webkit-user-select:none}
 .mapwrap svg.dragging{cursor:grabbing}
-.land{fill:#1c2029;stroke:#2c3240;stroke-width:1}
+.land{fill:#323236;stroke:#46464b;stroke-width:1}
 .dot{transition:r .18s ease}
 .ctrl{position:absolute;right:var(--s-sm);top:var(--s-sm);display:flex;flex-direction:column;gap:var(--s-xs)}
 .zoomlabel{position:absolute;left:var(--s-sm);top:var(--s-sm);font-size:12px;letter-spacing:-0.12px;color:var(--body-muted);background:rgba(37,37,39,.8);padding:6px 10px;border-radius:var(--r-sm);font-variant-numeric:tabular-nums}
@@ -243,7 +243,7 @@ p,li,dd,.why,.note,.cmp,.body-d,.method span,.ql{text-wrap:pretty}
 @media (max-width:1023px){.flow{grid-template-columns:1fr}}
 .steps{list-style:none;margin:0;padding:0;display:grid;gap:var(--s-xs)}
 @media (max-width:1023px){.steps{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
-.step{width:100%;display:flex;align-items:center;gap:var(--s-sm);text-align:left;background:transparent;border:1px solid #2a303c;border-radius:var(--r-pill);padding:10px 16px;color:var(--body-muted);font:inherit;font-size:14px;letter-spacing:-0.224px;cursor:pointer;min-height:44px;transition:transform .12s ease}
+.step{width:100%;display:flex;align-items:center;gap:var(--s-sm);text-align:left;background:transparent;border:1px solid #3a3a3c;border-radius:var(--r-pill);padding:10px 16px;color:var(--body-muted);font:inherit;font-size:14px;letter-spacing:-0.224px;cursor:pointer;min-height:44px;transition:transform .12s ease}
 .step:active{transform:scale(.95)}
 .step .num{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--tile-2);font-size:12px;color:var(--body-on-dark);flex:none}
 .step.done{color:var(--body-on-dark)}
@@ -258,13 +258,13 @@ p,li,dd,.why,.note,.cmp,.body-d,.method span,.ql{text-wrap:pretty}
 .varrow{font-size:24px;color:var(--ink-48)}
 .vrow{display:grid;gap:var(--s-sm)}
 .vbar{position:relative;background:var(--tile-3);border-radius:var(--r-sm);height:40px;overflow:hidden}
-.vbar i{position:absolute;inset:0 auto 0 0;background:#343b4a}
+.vbar i{position:absolute;inset:0 auto 0 0;background:#48484a}
 .vbar i.on{background:var(--primary-on-dark)}
 .vbar span{position:relative;display:block;padding:10px 14px;font-size:14px;letter-spacing:-0.224px;color:var(--body-on-dark)}
 .vflow{display:flex;align-items:center;gap:var(--s-md);flex-wrap:wrap}
 .vgrid{display:flex;flex-wrap:wrap;gap:var(--s-xs)}
 .vgrid.col{flex-direction:column}
-.vbox{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r-sm);background:var(--tile-3);color:var(--body-muted);font-size:14px;letter-spacing:-0.224px;border:1px solid #2a303c}
+.vbox{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r-sm);background:var(--tile-3);color:var(--body-muted);font-size:14px;letter-spacing:-0.224px;border:1px solid #3a3a3c}
 .vbox b{color:var(--body-on-dark);font-weight:600}
 .vbox.on{border-color:var(--primary-on-dark);color:var(--body-on-dark)}
 .vbox.off{text-decoration:line-through;color:var(--ink-48)}
@@ -309,14 +309,14 @@ p,li,dd,.why,.note,.cmp,.body-d,.method span,.ql{text-wrap:pretty}
 .qgrid{display:grid;grid-template-columns:28px 1fr 1fr;gap:6px;margin:12px 0 4px}
 .qax{font-size:12px;color:var(--body-muted);text-align:center;letter-spacing:-0.12px}
 .qax.qy{writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center}
-.qcell{display:flex;flex-direction:column;align-items:flex-start;gap:4px;background:var(--tile-3);border:1px solid #2a303c;border-radius:var(--r-md,11px);padding:10px 12px;color:var(--body-on-dark);font-family:inherit;text-align:left;cursor:pointer;transition:transform .12s ease}
+.qcell{display:flex;flex-direction:column;align-items:flex-start;gap:4px;background:var(--tile-3);border:1px solid #3a3a3c;border-radius:var(--r-md,11px);padding:10px 12px;color:var(--body-on-dark);font-family:inherit;text-align:left;cursor:pointer;transition:transform .12s ease}
 .qcell:active{transform:scale(0.95)}
 .qcell.fit{border-color:#1f4f80}
 .qcell[aria-pressed="true"]{border:2px solid var(--primary-focus);padding:9px 11px}
 .qcell i{width:12px;height:12px;border-radius:50%}
 .qcell .qn{font-size:28px;font-weight:600;line-height:1;letter-spacing:-0.28px}
 .qcell .ql{font-size:12px;color:var(--body-muted);line-height:1.3;word-break:keep-all}
-.pbar{height:8px;border-radius:999px;background:#2a303c;overflow:hidden;margin:10px 0 8px}
+.pbar{height:8px;border-radius:999px;background:#3a3a3c;overflow:hidden;margin:10px 0 8px}
 .pbar i{display:block;height:100%;background:var(--primary-on-dark);border-radius:999px;transition:width .3s ease}
 .takeaway{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:var(--s-xl,32px)}
 .takeaway p{margin:0;background:var(--tile-2);border-radius:var(--r-lg,18px);padding:20px 24px;font-size:17px;line-height:1.47;letter-spacing:-0.374px;color:var(--body-muted);word-break:keep-all}
@@ -346,7 +346,7 @@ p,li,dd,.why,.note,.cmp,.body-d,.method span,.ql{text-wrap:pretty}
 .saylist li{display:flex;gap:16px;align-items:center;background:var(--tile-2);border-radius:var(--r-lg);padding:20px 24px;font-size:19px;line-height:1.4;letter-spacing:-0.2px;word-break:keep-all}
 .saylist .mark{flex:none;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600}
 .saylist .say-ok .mark{background:var(--primary-on-dark);color:#fff}
-.saylist .say-no .mark{background:#2a303c;color:var(--body-muted)}
+.saylist .say-no .mark{background:#3a3a3c;color:var(--body-muted)}
 .saylist .say-no span:last-child{color:var(--body-muted)}
 @media (max-width:640px){.saylist li{font-size:17px;padding:16px 18px}}
 .glyph{width:48px;height:48px;display:block;margin-bottom:var(--s-sm)}
@@ -392,7 +392,7 @@ p,li,dd,.why,.note,.cmp,.body-d,.method span,.ql{text-wrap:pretty}
 #background .tile-h{margin-bottom:var(--s-xl)}
 
 /* ===== v2: "lights" brand layer + clearer charts ===== */
-:root{--glow-0:#1e3a4c;--glow-1:#22697a;--glow-2:#36b2ad;--glow-3:#8fe6d5;--glow-4:#f0fffb;--night:#0e0e11}
+:root{--glow-0:#55555a;--glow-1:#7c7c82;--glow-2:#a6a6ab;--glow-3:#2997ff;--glow-4:#ffffff;--night:#1d1d1f}
 /* hero: night map */
 .hero.hero-lights{background:radial-gradient(120% 90% at 78% 40%,#2a2116 0%,#16140f 38%,var(--night) 72%);color:#fff;text-align:left;padding-block:72px 64px;overflow:hidden}
 .herogrid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center}
@@ -419,7 +419,7 @@ p,li,dd,.why,.note,.cmp,.body-d,.method span,.ql{text-wrap:pretty}
 .mapguide p{margin:0;font-size:14px;line-height:1.5;letter-spacing:-0.224px;color:var(--body-muted)}
 .mapguide .gk{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--glow-3);letter-spacing:0}
 .mapguide .gk svg{flex:none}
-.mapguide button{align-self:flex-start;margin-top:auto;background:transparent;border:1px solid #343b4a;color:#fff;border-radius:999px;font:inherit;font-size:13px;padding:7px 14px;cursor:pointer}
+.mapguide button{align-self:flex-start;margin-top:auto;background:transparent;border:1px solid #48484a;color:#fff;border-radius:999px;font:inherit;font-size:13px;padding:7px 14px;cursor:pointer}
 .mapguide button:hover{border-color:var(--glow-3);color:var(--glow-3)}
 .howto{font-size:15px;line-height:1.5;color:var(--body-muted);text-align:center;margin:-24px auto var(--s-xl);max-width:40em}
 .howto b{color:var(--glow-3);font-weight:600}
@@ -480,7 +480,7 @@ html{scroll-padding-top:calc(104px + env(safe-area-inset-top,0px))}
 /* merge steps as a vertical timeline */
 .timeline{list-style:none;margin:0 auto;padding:0;max-width:860px;display:grid;gap:var(--s-md);counter-reset:none}
 .timeline>li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px;align-items:start;position:relative}
-.timeline>li::before{content:"";position:absolute;left:19px;top:44px;bottom:calc(-1 * var(--s-md));width:2px;background:#2a303c}
+.timeline>li::before{content:"";position:absolute;left:19px;top:44px;bottom:calc(-1 * var(--s-md));width:2px;background:#3a3a3c}
 .timeline>li:last-child::before{display:none}
 .timeline .tnum{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--primary-on-dark);color:#fff;font-weight:600;font-size:16px;position:relative;z-index:1}
 .timeline .stepcard .who{font-size:22px}
@@ -499,7 +499,7 @@ html{scroll-padding-top:calc(104px + env(safe-area-inset-top,0px))}
 .saycols h3{margin:0 0 var(--s-sm);font-size:17px;color:var(--body-muted);font-weight:600}
 .saycols .saylist li{font-size:17px}
 /* district picker (keyboard / screen-reader route into the map) */
-.pick{width:100%;margin-top:12px;min-height:44px;border-radius:10px;border:1px solid #343b4a;background:var(--tile-1);color:#fff;font:inherit;font-size:15px;padding:8px 12px}
+.pick{width:100%;margin-top:12px;min-height:44px;border-radius:10px;border:1px solid #48484a;background:var(--tile-1);color:#fff;font:inherit;font-size:15px;padding:8px 12px}
 /* contrast + minimum sizes */
 .dark .note,.maphint,.dark .tile-note,.flow-note,.dark .card .k span{color:#a8a8ad}
 .dark .strip text{fill:#a8a8ad}
@@ -511,7 +511,7 @@ html{scroll-padding-top:calc(104px + env(safe-area-inset-top,0px))}
 
 
 /* ===== v4: type, palette, labelled stepper, motion ===== */
-:root{--ink:#14161b;--ink-80:#3a3e47;--ink-48:#626774;--parchment:#f2f3f6;--pearl:#fafbfc;--hairline:#e2e4ea;--divider-soft:#eceef2;--chip:#d5d9e2;--ease:cubic-bezier(.2,.75,.2,1)}
+:root{--ease:cubic-bezier(.2,.75,.2,1)}
 body{font-family:var(--f-text);letter-spacing:-0.01em;color:var(--ink)}
 h1,h2,.tile-h,.eq,.who,.fv,.next h2,.dark h2{font-family:var(--f-display);font-weight:600;letter-spacing:-0.02em}
 .hero h1{font-weight:600;letter-spacing:-0.025em;line-height:1.12}
@@ -520,32 +520,31 @@ h1,h2,.tile-h,.eq,.who,.fv,.next h2,.dark h2{font-family:var(--f-display);font-w
 .tl,.zoomlabel,.method b,.chapnav .cn,.strip text{font-family:var(--f-mono)}
 .wk,.card .k,.sumgrid .k{letter-spacing:.01em}
 .lead,.tile-sub,.sub{font-weight:400}
-.gnav{background:rgba(10,12,17,.92)}
 .gnav .brand{font-family:var(--f-display);font-size:14px;font-weight:600;letter-spacing:-0.01em}
-.hero.hero-lights{background:radial-gradient(110% 90% at 76% 42%,#1c1d2b 0%,#11131b 40%,#090a0e 75%)}
-.heromap .land{fill:#151823;stroke:#232838}
+.hero.hero-lights{background:#1d1d1f}
+.heromap .land{fill:#2c2c2e;stroke:#3a3a3c}
 .parch{background:var(--parchment)}
 .ucard{border-color:var(--hairline);box-shadow:0 1px 0 rgba(20,22,27,.03)}
 .btn-primary{background:var(--primary)}
 .btn{font-weight:500}
-.pill{background:#e2f6f2;color:#17594f}
-.cbar.o i{background:#3aa99f}
-.inreal{background:#eef0ff}
+.pill{background:#e8f1fb;color:#0058b0}
+.cbar.o i{background:#8e8e93}
+.inreal{background:#eef5ff}
 /* chapter stepper: every step labelled */
 html{scroll-padding-top:calc(124px + env(safe-area-inset-top,0px))}
 .chapnav ol{height:66px;gap:0;position:relative}
 .chapnav li,.chapnav li:has(a[aria-current="step"]){flex:1 1 0!important;position:relative;min-width:0}
-.chapnav li+li::before{content:"";position:absolute;top:20px;left:calc(-50% + 18px);right:calc(50% + 18px);height:2px;border-radius:1px;background:#dfe2ea;transition:background .5s var(--ease)}
+.chapnav li+li::before{content:"";position:absolute;top:20px;left:calc(-50% + 18px);right:calc(50% + 18px);height:2px;border-radius:1px;background:#e0e0e5;transition:background .5s var(--ease)}
 .chapnav li:has(a.done)::before,.chapnav li:has(a[aria-current="step"])::before{background:var(--primary)}
 .chapnav a{flex-direction:column;justify-content:center;gap:5px;padding:4px 2px;min-height:62px;font-size:11.5px;line-height:1.2;color:var(--ink-48);text-align:center;white-space:nowrap;border-radius:12px}
 .chapnav a:hover{background:transparent;color:var(--ink)}
 .chapnav .ct{display:block!important;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-family:var(--f-text);font-weight:500}
-.chapnav .cn{width:26px;height:26px;font-size:12px;background:#e6e8ee;color:var(--ink-48);transition:transform .45s var(--ease),background .45s var(--ease),box-shadow .45s var(--ease),color .45s}
+.chapnav .cn{width:26px;height:26px;font-size:12px;background:#e8e8ed;color:var(--ink-48);transition:transform .45s var(--ease),background .45s var(--ease),box-shadow .45s var(--ease),color .45s}
 .chapnav a.done{color:var(--ink-80)}
-.chapnav a.done .cn{background:#dfe3ff;color:var(--primary)}
+.chapnav a.done .cn{background:#d6e6f8;color:var(--primary)}
 .chapnav a[aria-current="step"]{color:var(--ink);font-weight:600}
-.chapnav a[aria-current="step"] .cn{background:var(--primary);color:#fff;transform:scale(1.14);box-shadow:0 0 0 5px rgba(51,70,181,.14)}
-.chapfill i{background:linear-gradient(90deg,var(--primary),#36b2ad)}
+.chapnav a[aria-current="step"] .cn{background:var(--primary);color:#fff;transform:scale(1.14);box-shadow:0 0 0 5px rgba(0,102,204,.14)}
+.chapfill i{background:var(--primary)}
 @media (max-width:640px){.chapnav a{font-size:10.5px}.chapnav li+li::before{left:calc(-50% + 16px);right:calc(50% + 16px)}}
 /* motion */
 @media (prefers-reduced-motion:no-preference){
@@ -563,6 +562,133 @@ html{scroll-padding-top:calc(124px + env(safe-area-inset-top,0px))}
 @keyframes ignite{0%{opacity:0;transform:scale(.2)}60%{opacity:1;transform:scale(1.35)}100%{opacity:1;transform:scale(1)}}
 @keyframes breathe{from{opacity:.62}to{opacity:.95}}
 @keyframes pop{0%{opacity:0;transform:scale(0)}70%{opacity:1;transform:scale(1.25)}100%{opacity:1;transform:scale(1)}}
+
+
+/* ===== v6: clean, original colour system ===== */
+:root{--ink:#1d1d1f;--ink-80:#333336;--ink-48:#6e6e73}
+body{font-family:var(--f-text);letter-spacing:-0.005em}
+h1,h2,.tile-h,.who,.fv,.next h2,.dark h2{font-family:var(--f-display);font-weight:700;letter-spacing:-0.025em}
+.statn,.big,.counter .cn,.sumgrid .n,.herofacts b,.qn{font-family:var(--f-display);font-weight:700;letter-spacing:-0.03em}
+.gnav .brand{font-family:var(--f-display);font-weight:700}
+.why,.body-d,.mapguide p,.caselist p{font-size:15px;line-height:1.6}
+.bgtext p{line-height:1.7}
+.hero.hero-lights{background:#1d1d1f}
+.hero-lights .eyebrow{color:#2997ff}
+.heromap .land{fill:#2c2c2e;stroke:#3a3a3c}
+.mapguide .gk{color:#2997ff}
+.howto b{color:#fff}
+.inreal{background:#eef5ff}
+.chapnav a.done .cn{background:#d9e8fa;color:var(--primary)}
+.chapnav a[aria-current="step"] .cn{box-shadow:0 0 0 5px rgba(0,102,204,.14)}
+.dark :focus-visible{outline-color:#2997ff}
+@media (prefers-reduced-motion:no-preference){.heromap .hd{animation:fadein .9s ease both;animation-delay:calc(var(--d) * 0.6ms)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.dot{stroke:#1f1f21}
+.legend{display:grid;gap:10px;margin-top:var(--s-md)}
+.lgrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:13px;color:var(--body-muted)}
+.lgt{color:#f5f5f7;font-weight:600;margin-right:4px}
+.bins,.sizes{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.bin,.sz{display:inline-flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums}
+.bin i{width:12px;height:12px;border-radius:50%;display:inline-block;border:1px solid #1f1f21}
+.sz i{display:inline-block;border-radius:50%;background:#a1a1a6}
+/* conclusion */
+.concl{background:var(--canvas)}
+.concl .qa{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-lg);margin-bottom:var(--s-xxl)}
+@media (max-width:834px){.concl .qa{grid-template-columns:1fr}}
+.concl .qa .ucard{padding:28px}
+.concl .qa h3{font-size:22px;line-height:1.35;margin:6px 0 10px}
+.concl .verdict-k{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);border-radius:999px;padding:4px 12px}
+.concl h3.sec{font-family:var(--f-display);font-size:24px;font-weight:700;letter-spacing:-0.02em;margin:0 0 6px}
+.concl .secsub{margin:0 0 var(--s-md);color:var(--ink-80);font-size:15px}
+.concl section+section,.concl .blk+.blk{margin-top:var(--s-xxl)}
+.rtable{width:100%;border-collapse:collapse;font-size:15px;min-width:720px}
+.rtable th,.rtable td{padding:14px 12px;border-bottom:1px solid var(--divider-soft);text-align:left;vertical-align:middle}
+.rtable thead th{font-size:13px;font-weight:600;color:var(--ink-48);background:var(--parchment)}
+.rtable td.num{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.rtable tr.final td{background:#f5f9ff}
+.rtable .tagf{margin-left:8px;font-size:11px;font-weight:700;color:#fff;background:var(--primary);border-radius:999px;padding:2px 8px;vertical-align:1px}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.st.in{background:#f0f0f2;color:#333336}.st.cross{background:#fff4e5;color:#8a4b00}.st.below{background:#e8f1fb;color:#0058b0}
+.rwrap{overflow-x:auto;border:1px solid var(--hairline);border-radius:var(--r-lg)}
+.mvr{display:grid;gap:12px}
+.mvr .row{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1.3fr);gap:16px;align-items:stretch}
+@media (max-width:834px){.mvr .row{grid-template-columns:1fr}.mvr .arr{display:none}}
+.mvr .myth,.mvr .real{border-radius:var(--r-md);padding:16px 18px;font-size:15px;line-height:1.55}
+.mvr .myth{background:var(--parchment);color:var(--ink-80)}
+.mvr .real{background:#fff;border:1px solid var(--hairline);color:var(--ink)}
+.mvr .lab{display:block;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.mvr .myth .lab{color:var(--ink-48)}.mvr .real .lab{color:var(--primary)}
+.mvr .arr{display:flex;align-items:center;justify-content:center;color:var(--ink-48);font-size:20px}
+.impl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-lg)}
+@media (max-width:900px){.impl{grid-template-columns:1fr}}
+.impl .ucard h4{margin:0 0 8px;font-size:17px;line-height:1.4}
+.impl .ucard p{margin:0;font-size:15px;line-height:1.6;color:var(--ink-80)}
+.callout{margin-top:var(--s-xxl);background:#1d1d1f;color:#f5f5f7;border-radius:var(--r-lg);padding:32px}
+.callout .k{margin:0 0 8px;font-size:13px;font-weight:700;color:#2997ff;letter-spacing:.04em;text-transform:uppercase}
+.callout p.big2{margin:0;font-family:var(--f-display);font-size:22px;line-height:1.45;font-weight:600;letter-spacing:-0.015em}
+
+
+/* ===== v7: website navigation ===== */
+html{scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+.sitenav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.88);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08);padding-top:env(safe-area-inset-top,0px)}
+.snrow{height:64px;display:flex;align-items:center;gap:20px}
+.snbrand{display:flex;align-items:center;gap:10px;color:var(--ink);flex:none;min-width:0}
+.snbrand b{display:block;font-family:var(--f-display);font-size:15px;font-weight:800;line-height:1.15;letter-spacing:-0.01em}
+.snsub{display:block;font-size:12px;color:var(--ink-48);line-height:1.25;white-space:nowrap}
+.snlinks{display:flex;gap:2px;margin:0 auto;height:100%;align-items:stretch}
+.snlinks .nl{display:flex;align-items:center;position:relative;padding:0 14px;font-size:14.5px;font-weight:500;color:var(--ink-80);white-space:nowrap;transition:color .2s}
+.snlinks .nl:hover{color:var(--ink)}
+.snlinks .nl::after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:2px;border-radius:2px;background:var(--primary);transform:scaleX(0);transition:transform .3s var(--ease,ease)}
+.snlinks .nl.on{color:var(--ink);font-weight:600}
+.snlinks .nl.on::after{transform:scaleX(1)}
+.snright{display:flex;align-items:center;gap:12px;flex:none;margin-left:auto}
+.snlinks+.snright{margin-left:0}
+.snlang{display:flex;background:#f0f0f2;border-radius:999px;padding:3px}
+.snlang button{border:0;background:transparent;font:inherit;font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--ink-48);padding:5px 11px;border-radius:999px;cursor:pointer;min-height:28px}
+.snlang button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.sncta{white-space:nowrap}
+.snmenu{display:none;width:40px;height:40px;border:0;background:transparent;border-radius:10px;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;padding:0}
+.snmenu span{display:block;width:18px;height:2px;border-radius:1px;background:var(--ink);transition:transform .25s,opacity .2s}
+.sitenav.open .snmenu span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.sitenav.open .snmenu span:nth-child(2){opacity:0}
+.sitenav.open .snmenu span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.snpanel{display:none}
+.snprog{position:absolute;left:0;right:0;bottom:-1px;height:2px;pointer-events:none}
+.snprog i{display:block;height:2px;background:var(--primary);transform-origin:0 50%;transform:scaleX(0)}
+@media (max-width:1060px){
+  .snlinks,.sncta{display:none}
+  .snmenu{display:flex}
+  .snlinks+.snright{margin-left:auto}
+  .sitenav.open .snpanel{display:block;border-top:1px solid var(--divider-soft);background:#fff;max-height:calc(100vh - 64px);overflow:auto}
+  .snpanel nav{display:grid;padding-block:8px 16px}
+  .snpanel .nl{display:block;padding:14px 4px;font-size:17px;font-weight:500;color:var(--ink-80);border-bottom:1px solid var(--divider-soft)}
+  .snpanel .nl.on{color:var(--primary);font-weight:600}
+  .snpanel .ncta{border-bottom:0;color:var(--primary);font-weight:600}
+}
+@media (max-width:420px){.snsub{display:none}.snrow{gap:12px}}
+
+
+/* ===== v8: numbered steps in the bar ===== */
+.nl .cn{flex:none;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:#e8e8ed;color:var(--ink-48);font-variant-numeric:tabular-nums;transition:background .3s,color .3s,transform .3s var(--ease,ease),box-shadow .3s}
+.nl.done .cn{background:#d9e8fa;color:var(--primary)}
+.nl.on .cn{background:var(--primary);color:#fff;transform:scale(1.08);box-shadow:0 0 0 4px rgba(0,102,204,.14)}
+.snlinks{gap:0}
+.snlinks .nl{gap:8px;padding:0 12px}
+.snlinks .nl:not(:first-child)::before{content:"";width:16px;height:2px;border-radius:1px;background:#dcdce1;margin-right:4px;margin-left:-8px}
+.snlinks .nl.done+.nl::before,.snlinks .nl.on::before{background:var(--primary)}
+.snlinks .nl::after{display:none}
+.snsteps{display:none}
+.snpanel .nl{display:flex!important;align-items:center;gap:12px}
+@media (max-width:1060px){
+  .snsteps{display:block;border-top:1px solid var(--divider-soft)}
+  .snsteps .container{display:flex;height:58px;align-items:stretch}
+  .snsteps .nl{flex:1 1 0;min-width:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11px;font-weight:500;color:var(--ink-48);line-height:1.2;text-align:center}
+  .snsteps .nl .ct{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .snsteps .nl.on{color:var(--ink);font-weight:700}
+  .snsteps .nl+.nl::before{content:"";position:absolute;top:19px;left:calc(-50% + 16px);right:calc(50% + 16px);height:2px;border-radius:1px;background:#dcdce1}
+  .snsteps .nl.done+.nl::before,.snsteps .nl.on::before{background:var(--primary)}
+  html{scroll-padding-top:calc(132px + env(safe-area-inset-top,0px))}
+}
 
 /* findings */
 .mini{max-width:340px}
@@ -1239,11 +1365,11 @@ const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
 const M_C=mean(DATA.map(p=>p.c)), M_O=mean(DATA.map(p=>p.o));
 const VB={x:-20,y:-20,w:GEO.w+40,h:GEO.h+40};
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-const TYPES=[['자치구','#c9f5ec'],['시','#4fc4b8'],['군','#23707b']];
+const TYPES=[['자치구','#f5f5f7'],['시','#a1a1a6'],['군','#6e6e73']];
 const TYPECOL=Object.fromEntries(TYPES);
 const COUNTS=Object.fromEntries(TYPES.map(([t])=>[t,DATA.filter(p=>p.t===t).length]));
 const MODES={o:{label:'고령 비율',key:'o',lo:12,hi:50,fmt:v=>v.toFixed(0)+'%'},c:{label:'1,000명당 편의점',key:'c',lo:0.4,hi:2.4,fmt:v=>v.toFixed(1)+L('개','')}};
-const GLOW=['#1e3a4c','#22697a','#36b2ad','#8fe6d5','#f0fffb'];
+const GLOW=['#4a4a4f','#727278','#a1a1a6','#d2d2d7','#ffffff'];
 const hx=c=>[1,3,5].map(i=>parseInt(c.slice(i,i+2),16));
 const ramp=t=>{t=clamp(t,0,1)*(GLOW.length-1); const i=Math.min(GLOW.length-2,Math.floor(t)), f=t-i, a=hx(GLOW[i]), b=hx(GLOW[i+1]);
   return 'rgb('+a.map((v,k)=>Math.round(v+(b[k]-v)*f)).join(',')+')';};
@@ -1251,7 +1377,10 @@ const RAMP_CSS='linear-gradient(90deg,'+GLOW.join(',')+')';
 const shade=t=>ramp(t);
 const GlowDefs=({id,sd})=>h('defs',null,h('filter',{id,x:'-50%',y:'-50%',width:'200%',height:'200%'},h('feGaussianBlur',{stdDeviation:sd||6})));
 const byName=n=>PTS.find(p=>p.n===n);
-const baseR=c=>2.2+Math.sqrt(c)*3.1;
+const CUTS={}; ['o','c'].forEach(k=>{const a=DATA.map(p=>p[k]).sort((x,y)=>x-y); CUTS[k]=[1,2,3,4].map(i=>a[Math.round(i*a.length/5)]);});
+const binOf=(k,v)=>CUTS[k].filter(c=>v>=c).length;
+const binCol=(k,v)=>GLOW[binOf(k,v)];
+const baseR=c=>2+(Math.sqrt(clamp(c,0.4,3.2))-Math.sqrt(0.4))/(Math.sqrt(3.2)-Math.sqrt(0.4))*8;
 
 /* measure an element's rendered width so SVG charts can be drawn at real pixel size (text never shrinks on phones) */
 function useWidth(ref,fallback){
@@ -1291,14 +1420,10 @@ function useRoute(){
   return page;
 }
 
-function GlobalNav({lang,setLang}){
-  return h('header',{className:'gnav',id:'top'},h('div',{className:'container'},
-      h('a',{className:'brand',href:'#home'},'G18 · '+L('편의점 불빛 지도','Convenience Store Light Map')),
-      h('div',{className:'navright'},
-        h('span',{className:'meta'},'ACDT 2026 · Project 1'),
-        h('div',{className:'langsw',role:'group','aria-label':'Language / 언어'},
-          [['ko','KOR'],['en','ENG']].map(([k,t])=>h('button',{key:k,'aria-pressed':lang===k,lang:k,onClick:()=>setLang(k)},t))))));
-}
+const LogoMark=()=>h('svg',{width:30,height:30,viewBox:'0 0 30 30','aria-hidden':'true',style:{flex:'none'}},
+  h('rect',{width:30,height:30,rx:8,style:{fill:'#1d1d1f'}}),
+  h('circle',{cx:10,cy:11,r:2.2,style:{fill:'#6e6e73'}}),h('circle',{cx:19.5,cy:9.5,r:3.4,style:{fill:'#d2d2d7'}}),
+  h('circle',{cx:13,cy:20,r:4.6,style:{fill:'#ffffff'}}),h('circle',{cx:22,cy:20.5,r:1.8,style:{fill:'#a1a1a6'}}));
 function useChapter(){
   const [cur,setCur]=useState('home'); const fill=useRef(null);
   useEffect(()=>{let raf=0;
@@ -1312,15 +1437,29 @@ function useChapter(){
     return ()=>{window.removeEventListener('scroll',on); window.removeEventListener('resize',on);};},[]);
   return [cur,fill];
 }
-function ChapNav({cur,fill}){
+function SiteNav({lang,setLang,cur,fill}){
+  const [open,setOpen]=useState(false);
+  const close=()=>setOpen(false);
   const ci=PAGES.findIndex(p=>p.id===cur);
-  return h('nav',{className:'chapnav','aria-label':L('목차','Chapters')},
-    h('div',{className:'container'},h('ol',null,PAGES.map((p,i)=>h('li',{key:p.id},
-      h('a',{href:'#'+p.id,className:i<ci?'done':'','aria-current':cur===p.id?'step':undefined},
-        h('span',{className:'cn'},i+1),h('span',{className:'ct'},p.label)))))),
-    h('div',{className:'chapfill','aria-hidden':'true'},h('i',{ref:fill})));
+  const step=(p,i)=>h('a',{key:p.id,href:'#'+p.id,className:'nl'+(cur===p.id?' on':'')+(i<ci?' done':''),'aria-current':cur===p.id?'step':undefined,onClick:close},
+    h('span',{className:'cn','aria-hidden':'true'},i+1),h('span',{className:'ct'},p.label));
+  const links=PAGES.map(step);
+  return h('header',{className:'sitenav'+(open?' open':''),id:'top'},
+    h('div',{className:'container snrow'},
+      h('a',{className:'snbrand',href:'#home',onClick:close,'aria-label':L('G18 편의점 불빛 지도, 맨 위로','G18 Convenience Store Light Map, back to top')},
+        h(LogoMark),h('span',null,h('b',null,'G18'),h('span',{className:'snsub'},L('편의점 불빛 지도','Convenience Store Light Map')))),
+      h('nav',{className:'snlinks','aria-label':L('주요 메뉴','Main')},links),
+      h('div',{className:'snright'},
+        h('div',{className:'snlang',role:'group','aria-label':'Language / 언어'},
+          [['en','EN'],['ko','KO']].map(([k,t])=>h('button',{key:k,'aria-pressed':lang===k,lang:k,onClick:()=>setLang(k)},t))),
+        h('a',{className:'btn btn-primary btn-sm sncta',href:'#int-conclusion'},L('결론 보기','See the conclusion')),
+        h('button',{className:'snmenu','aria-expanded':open,'aria-controls':'snpanel','aria-label':open?L('메뉴 닫기','Close menu'):L('메뉴 열기','Open menu'),onClick:()=>setOpen(!open)},
+          h('span'),h('span'),h('span')))),
+    h('nav',{className:'snsteps','aria-label':L('단계','Steps')},h('div',{className:'container'},PAGES.map(step))),
+    h('div',{id:'snpanel',className:'snpanel'},h('nav',{className:'container','aria-label':L('주요 메뉴','Main')},links,
+      h('a',{className:'nl ncta',href:'#int-conclusion',onClick:close},L('결론 보기 →','See the conclusion →')))),
+    h('div',{className:'snprog','aria-hidden':'true'},h('i',{ref:fill})));
 }
-
 const SUBNAV={
   home:{title:'편의점 불빛 지도',links:[['개요','overview'],['배경','background'],['구성','guide'],['지도','map']],cta:['지도 보기','map']},
   hypothesis:{title:'가설',links:[['왜 다듬었나','hyp-why'],['영향 요인','hyp-map'],['질문','hyp-questions'],['기준','hyp-threshold']],cta:['영향 요인 보기','hyp-map']},
@@ -1352,10 +1491,8 @@ function HeroMap(){
   const m=MODES.o; const t=p=>clamp((p.o-m.lo)/(m.hi-m.lo),0,1);
   const order=[...DATA].sort((a,b)=>b.c-a.c);
   return h('svg',{viewBox:`${VB.x} ${VB.y} ${VB.w} ${VB.h}`,className:'heromap',role:'img','aria-label':L('226개 시군구를 불빛으로 그린 지도. 점 크기는 1,000명당 편의점 수, 밝기는 고령 비율.','The 226 districts drawn as lights. Dot size = stores per 1,000 residents, brightness = elderly share.')},
-    h(GlowDefs,{id:'hglow',sd:9}),
     h('path',{className:'land',d:GEO.land}),
-    h('g',{filter:'url(#hglow)',opacity:.85,className:'hglow'},order.map(p=>h('circle',{key:p.n,cx:p.x,cy:p.y,r:baseR(p.c)*2.1,style:{fill:shade(t(p))}}))),
-    order.map((p,i)=>h('circle',{key:p.n,className:'hd',cx:p.x,cy:p.y,r:baseR(p.c)*0.95,style:{fill:shade(t(p)),stroke:'rgba(0,0,0,.35)',strokeWidth:.5,'--d':Math.round(200+p.y*1.1+((i*53)%17)*20)}})));
+    order.map((p,i)=>h('circle',{key:p.n,className:'hd',cx:p.x,cy:p.y,r:baseR(p.c),style:{fill:binCol('o',p.o),stroke:'#1d1d1f',strokeWidth:.8,'--d':Math.round(200+p.y*1.1+((i*53)%17)*20)}})));
 }
 function Summary(){
   const items=[
@@ -1389,7 +1526,7 @@ function Hero(){
       h('p',{className:'herocap'},
         h('span',null,L('점 하나 = 시군구 하나','One dot = one district')),
         h('span',null,L('클수록 편의점이 많음','Bigger = more stores')),
-        h('span',null,h('i',{style:{background:'#8fe6d5',boxShadow:'0 0 6px #8fe6d5'}}),L('밝을수록 고령 비율이 높음','Brighter = older population'))))));
+        h('span',null,h('i',{style:{background:'#fff'}}),L('밝을수록 고령 비율이 높음','Brighter = older population'))))));
 }
 
 /* ---------- background + site guide (intro page) ---------- */
@@ -1491,14 +1628,12 @@ function MapView({mode,active,hover,setHover,pin,pinned}){
       h('svg',Object.assign({ref:svgRef,viewBox:`${VB.x} ${VB.y} ${VB.w} ${VB.h}`,role:'img','aria-label':L(`전국 시군구 지도. 점 크기는 인구 1,000명당 편의점 수, 밝기는 ${m.label}.`,`Map of all districts. Dot size = stores per 1,000 residents, brightness = ${tr(m.label)}.`),
         style:{touchAction:v.k>1?'none':'pan-y'},onMouseLeave:()=>setHover(null)},handlers),
         h('g',{transform:`translate(${v.tx} ${v.ty}) scale(${v.k})`},
-          h(GlowDefs,{id:'mglow',sd:7}),
           h('path',{className:'land',d:GEO.land,style:{strokeWidth:1/v.k}}),
-          h('g',{filter:'url(#mglow)',opacity:.7,style:{pointerEvents:'none'}},DATA.map(p=>h('circle',{key:p.n,cx:p.x,cy:p.y,r:baseR(p.c)*1.7*rScale,style:{fill:shade(clamp((p[m.key]-m.lo)/(m.hi-m.lo),0,1))}}))),
           order.map(p=>{
             const isA=active&&active.n===p.n;
-            if(p.c==null) return h('circle',{key:p.n,cx:p.x,cy:p.y,r:2*rScale,style:{fill:'#4a5263'},onPointerEnter:()=>setHover(p),onClick:()=>{if(!moved.current)pin(p)}});
-            const t=clamp((p[m.key]-m.lo)/(m.hi-m.lo),0,1); const r=baseR(p.c)*rScale*(isA?1.9:1);
-            return h('circle',{key:p.n,className:'dot',cx:p.x,cy:p.y,r,style:{'--d':Math.round(p.y*1.3),fill:isA?'var(--primary-on-dark)':shade(t),stroke:isA?'#fff':'var(--tile-3)',strokeWidth:(isA?1.6:0.6)*rScale},
+            if(p.c==null) return h('circle',{key:p.n,cx:p.x,cy:p.y,r:2*rScale,style:{fill:'#5a5a5f'},onPointerEnter:()=>setHover(p),onClick:()=>{if(!moved.current)pin(p)}});
+            const r=baseR(p.c)*rScale*(isA?1.6:1);
+            return h('circle',{key:p.n,className:'dot',cx:p.x,cy:p.y,r,style:{'--d':Math.round(p.y*1.3),fill:isA?'var(--primary-on-dark)':binCol(m.key,p[m.key]),stroke:isA?'#fff':'var(--tile-3)',strokeWidth:(isA?1.6:0.6)*rScale},
               onPointerEnter:()=>setHover(p),onClick:()=>{if(!moved.current)pin(p===pinned?null:p)}});
           }),
           active&&h('circle',{cx:active.x,cy:active.y,r:(active.c?baseR(active.c)*1.9:4)*rScale+4*rScale,style:{fill:'none',stroke:'var(--primary-on-dark)',strokeWidth:1.2*rScale,pointerEvents:'none'}}))),
@@ -1515,8 +1650,12 @@ function MapView({mode,active,hover,setHover,pin,pinned}){
         h('button',{className:'icon-btn','aria-label':'처음 크기로',onClick:reset,style:{fontSize:'15px'}},'↺'))),
     h('p',{className:'maphint'},'＋/− 버튼, 더블클릭, 트랙패드 두 손가락 확대(⌘/Ctrl + 스크롤), 휴대폰은 두 손가락으로 확대 · 확대 후 끌어서 이동 · 점을 누르면 고정'),
     h('div',{className:'legend'},
-      h('span',null,L(`밝기 = ${m.label} `,`Brightness = ${tr(m.label)} `),m.fmt(m.lo),h('i',{className:'ramp',style:{background:RAMP_CSS}}),m.fmt(m.hi)),
-      h('span',{className:'sizes'},'점 크기 = 1,000명당 편의점',[0.5,1.5,3].map(c=>h('i',{key:c,style:{width:baseR(c)*1.1+'px',height:baseR(c)*1.1+'px'}})))));
+      h('div',{className:'lgrow'},h('span',{className:'lgt'},L(`밝기 = ${m.label}`,`Brightness = ${tr(m.label)}`)),
+        h('span',{className:'bins'},GLOW.map((c,i)=>{const cu=CUTS[m.key]; const lo=i===0?null:cu[i-1], hi=i===4?null:cu[i];
+          const f=v=>m.key==='o'?v.toFixed(0)+'%':v.toFixed(1);
+          return h('span',{key:i,className:'bin'},h('i',{style:{background:c}}),lo==null?L(f(hi)+' 미만','< '+f(hi)):hi==null?L(f(lo)+' 이상','≥ '+f(lo)):f(lo)+'–'+f(hi));}))),
+      h('div',{className:'lgrow'},h('span',{className:'lgt'},L('점 크기 = 1,000명당 편의점','Dot size = stores per 1,000')),
+        h('span',{className:'sizes'},[0.5,1.0,2.0,3.0].map(c=>h('span',{key:c,className:'sz'},h('i',{style:{width:(baseR(c)*1.3).toFixed(1)+'px',height:(baseR(c)*1.3).toFixed(1)+'px'}}),c.toFixed(1)))))));
 }
 
 /* ---------- visualized readouts ---------- */
@@ -1526,8 +1665,8 @@ function Strip({k,active,unit,dec,lo,hi,label,setHover}){
   const jit=i=>14+((i*7919)%29);
   const m=k==='c'?M_C:M_O;
   return h('svg',{ref,className:'strip',viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':L(`${label} 분포: 226개 시군구, 평균 ${m.toFixed(dec)}${unit}`,`${tr(label)} distribution: 226 districts, average ${m.toFixed(dec)}${unit}`)},
-    h('line',{x1:P,x2:W-P,y1:50,y2:50,style:{stroke:'#2a303c'}}),
-    DATA.map((p,i)=>h('circle',{key:p.n,cx:x(p[k]),cy:jit(i),r:2.3,style:{fill:shade(clamp((p[k]-MODES[k].lo)/(MODES[k].hi-MODES[k].lo),0,1)),opacity:active&&active.n!==p.n?.55:.9,cursor:'pointer'},onPointerEnter:()=>setHover(p)})),
+    h('line',{x1:P,x2:W-P,y1:50,y2:50,style:{stroke:'#3a3a3c'}}),
+    DATA.map((p,i)=>h('circle',{key:p.n,cx:x(p[k]),cy:jit(i),r:2.3,style:{fill:binCol(k,p[k]),opacity:active&&active.n!==p.n?.55:.9,cursor:'pointer'},onPointerEnter:()=>setHover(p)})),
     h('line',{x1:x(m),x2:x(m),y1:6,y2:52,style:{stroke:'#ffffff',strokeWidth:1.2,strokeDasharray:'2 2'}}),
     h('text',{x:clamp(x(m),20,W-40),y:62,textAnchor:'middle'},L('평균 ','avg ')+m.toFixed(dec)+unit),
     h('text',{x:P,y:62},mn+unit), h('text',{x:W-P,y:62,textAnchor:'end'},mx+unit),
@@ -1674,7 +1813,7 @@ function DagNode({k,x,y,NW,NH,sel,setSel,dim,fs,fixedW}){
   const v=NODES[k], s=sel===k, main=v.role==='main'; if(!fixedW) NW=nodeW(k,NW,fs);
   return h('g',{className:'node',tabIndex:0,role:'button','aria-pressed':s,'aria-label':v.label,
       onClick:()=>setSel(k),onKeyDown:e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setSel(k);}},style:{opacity:dim?.3:1,cursor:'pointer'}},
-    h('rect',{x:x-NW/2,y:y-NH/2,width:NW,height:NH,rx:NH/2,style:{fill:main?'#f5f5f7':'var(--tile-2)',stroke:s?'var(--primary-on-dark)':(main?'#f5f5f7':'#343b4a'),strokeWidth:s?2.6:1}}),
+    h('rect',{x:x-NW/2,y:y-NH/2,width:NW,height:NH,rx:NH/2,style:{fill:main?'#f5f5f7':'var(--tile-2)',stroke:s?'var(--primary-on-dark)':(main?'#f5f5f7':'#48484a'),strokeWidth:s?2.6:1}}),
     h('text',{x,y:y-1,textAnchor:'middle',className:'nl',style:{fill:main?'#1d1d1f':'#ffffff',fontSize:fs+'px'}},v.label),
     h('text',{x,y:y+15,textAnchor:'middle',className:'ns',style:{fill:main?'#6e6e73':'#a1a1a6'}},v.sub));
 }
@@ -1694,7 +1833,7 @@ function DagWide({W,sel,setSel,view}){
     h(Arrows),
     EDGES.map(([a,b,k])=>{const on=edgeOn(view,k), hot=sel===a||sel===b; const [x1,y1,x2,y2]=clipLine(P(a),P(b),nodeW(a,NW,fs),NH,nodeW(b,NW,fs));
       const lit=(view!=='all'&&on)||(view==='all'&&hot);
-      return h('line',{key:a+b,x1,y1,x2,y2,markerEnd:lit?'url(#ahOn)':'url(#ah)',style:{stroke:lit?'var(--primary-on-dark)':'#4a5263',strokeWidth:k==='direct'?3:lit?2.2:1.4,opacity:view!=='all'&&!on?.2:1}});}),
+      return h('line',{key:a+b,x1,y1,x2,y2,markerEnd:lit?'url(#ahOn)':'url(#ah)',style:{stroke:lit?'var(--primary-on-dark)':'#5a5a5f',strokeWidth:k==='direct'?3:lit?2.2:1.4,opacity:view!=='all'&&!on?.2:1}});}),
     h('text',{x:W/2,y:P('X').y-14,textAnchor:'middle',className:'ns',style:{fill:'#a1a1a6'}},'우리가 알고 싶은 관계'),
     Object.keys(NODES).map(k=>{const main=NODES[k].role==='main'; const dim=view!=='all'&&!main&&!touches(k).some(e=>edgeOn(view,e[2]));
       const p=P(k); return h(DagNode,{key:k,k,x:p.x,y:p.y,NW,NH,sel,setSel,dim,fs});}));
@@ -1746,7 +1885,7 @@ function SystemMap(){
 function CorrBar({r}){
   const ref=useRef(null); const W=useWidth(ref,320), H=46,P=10, x=v=>P+(v+1)/2*(W-2*P);
   return h('svg',{ref,className:'strip',viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':L(`상관계수 ${r}`,`Correlation ${r}`)},
-    h('line',{x1:P,x2:W-P,y1:20,y2:20,style:{stroke:'#2a303c',strokeWidth:6,strokeLinecap:'round'}}),
+    h('line',{x1:P,x2:W-P,y1:20,y2:20,style:{stroke:'#3a3a3c',strokeWidth:6,strokeLinecap:'round'}}),
     h('line',{x1:x(0),x2:x(r),y1:20,y2:20,style:{stroke:'var(--primary-on-dark)',strokeWidth:6,strokeLinecap:'round'}}),
     h('line',{x1:x(0),x2:x(0),y1:10,y2:30,style:{stroke:'#ffffff',strokeWidth:1}}),
     h('text',{x:P,y:44},'반대로'),h('text',{x:x(0),y:44,textAnchor:'middle'},'관계 없음'),h('text',{x:W-P,y:44,textAnchor:'end'},'같이'));
@@ -1877,7 +2016,7 @@ function MergeFlow(){
         h('p',{className:'k'},L('단계 ','Step ')+(i+1)+' / '+STEPS.length,h('span',null,s.t)),
         h('h3',{className:'who'},s.head),
         h('p',{className:'body-d'},s.body),
-        h('div',{className:'counter'},
+        (s.vis==='check'||s.vis==='keys')?null:h('div',{className:'counter'},
           h('div',null,h('p',{className:'cl'},s.from[0]),h('p',{className:'cn'},fmt(s.from[1]))),
           h('span',{className:'varrow','aria-hidden':'true'},'→'),
           h('div',null,h('p',{className:'cl'},s.to[0]),h('p',{className:'cn blue'},fmt(s.to[1])))),
@@ -1945,9 +2084,9 @@ const MED_C=(()=>{const a=DATA.map(p=>p.c).sort((x,y)=>x-y); return (a[112]+a[11
 const MED_O=(()=>{const a=DATA.map(p=>p.o).sort((x,y)=>x-y); return (a[112]+a[113])/2;})();
 // four groups: old/young × many/few stores. "fits" = what the saying predicts.
 const GROUPS=[
-  {id:'Oc',old:true, many:false,fits:true, label:'노인 많고 편의점 적음',col:'#8d9cff'},
-  {id:'Yc',old:false,many:true, fits:true, label:'노인 적고 편의점 많음',col:'#cdd4ff'},
-  {id:'OC',old:true, many:true, fits:false,label:'노인 많고 편의점 많음',col:'#8fe6d5'},
+  {id:'Oc',old:true, many:false,fits:true, label:'노인 많고 편의점 적음',col:'#2997ff'},
+  {id:'Yc',old:false,many:true, fits:true, label:'노인 적고 편의점 많음',col:'#9ccbff'},
+  {id:'OC',old:true, many:true, fits:false,label:'노인 많고 편의점 많음',col:'#f5f5f7'},
   {id:'YC',old:false,many:false,fits:false,label:'노인 적고 편의점 적음',col:'#6e6e73'},
 ];
 const groupOf=p=>GROUPS.find(g=>g.old===(p.o>=MED_O)&&g.many===(p.c>=MED_C));
@@ -1973,10 +2112,10 @@ function QuadMap({sel,filter,hover,setHover}){
       h('g',{transform:`translate(${v.tx} ${v.ty}) scale(${v.k})`},
         h('path',{className:'land',d:GEO.land,style:{strokeWidth:1/v.k}}),
         PTS.map(p=>{
-          if(p.c==null) return h('circle',{key:p.n,cx:p.x,cy:p.y,r:2*rS,style:{fill:'#2a303c'}});
+          if(p.c==null) return h('circle',{key:p.n,cx:p.x,cy:p.y,r:2*rS,style:{fill:'#3a3a3c'}});
           const g=groupOf(p), on=shown(p), isA=hover&&hover.n===p.n;
           return h('circle',{key:p.n,className:'dot',cx:p.x,cy:p.y,r:(isA?9:5.2)*rS,
-            style:{'--d':Math.round(p.y*1.3),fill:on?g.col:'#2a303c',opacity:on?1:.55,stroke:isA?'#fff':'var(--tile-3)',strokeWidth:(isA?1.8:.6)*rS},
+            style:{'--d':Math.round(p.y*1.3),fill:on?g.col:'#3a3a3c',opacity:on?1:.55,stroke:isA?'#fff':'var(--tile-3)',strokeWidth:(isA?1.8:.6)*rS},
             onPointerEnter:()=>setHover(p)});
         }))),
     hover&&tp&&hover.c!=null&&(()=>{const W=196,off=14; const left=tp.x+off+W>tp.w?tp.x-off-W:tp.x+off; const g=groupOf(hover);
@@ -2233,6 +2372,72 @@ function NextSteps(){
     h('ol',{className:'nsteps'},NEXT.map(s=>h('li',{key:s.n},h('span',{className:'nn'},s.n),h('div',null,h('h3',null,s.t),h('p',{className:'why'},s.d)))))));
 }
 
+function CIbar({lo,hi,b,final}){
+  const W=200,H=26,a=-0.4,z=0.25,x=v=>6+(clamp(v,a,z)-a)/(z-a)*(W-12);
+  return h('svg',{viewBox:`0 0 ${W} ${H}`,width:W,height:H,role:'img','aria-label':L(`범위 ${lo}에서 ${hi}, 추정치 ${b}`,`Range ${lo} to ${hi}, estimate ${b}`),style:{display:'block'}},
+    h('rect',{x:x(-0.1),y:2,width:x(0.1)-x(-0.1),height:H-4,rx:3,style:{fill:'#ececf0'}}),
+    h('line',{x1:x(0),x2:x(0),y1:0,y2:H,style:{stroke:'#1d1d1f',strokeWidth:1}}),
+    h('line',{x1:x(lo),x2:x(hi),y1:H/2,y2:H/2,style:{stroke:final?'var(--primary)':'#8e8e93',strokeWidth:4,strokeLinecap:'round'}}),
+    h('circle',{cx:x(b),cy:H/2,r:5,style:{fill:final?'var(--primary)':'#8e8e93',stroke:'#fff',strokeWidth:1.5}}));
+}
+function Conclusion(){
+  const sgn=v=>(v<0?'−':'+')+Math.abs(v).toFixed(2);
+  const status=k=>k.hi<-0.1?['below',L('기준보다 확실히 적음','Clearly below the threshold')]:(k.lo>-0.1&&k.hi<0.1)?['in',L('의미 있는 차이 없음','No meaningful difference')]:['cross',L('기준선에 걸침 · 판단 보류','Straddles the threshold · undecided')];
+  const MVR=[
+    [L('노인이 많은 동네일수록 편의점이 적다.','The more older residents, the fewer convenience stores.'),
+     L('전국 226곳에서는 노인 비율만으로 편의점 수를 짐작할 수 없었습니다. 상관계수는 r = −0.05였고, 네 무리로 나누면 57·56·57·56곳으로 거의 같았습니다.','Across all 226 districts the elderly share told us almost nothing about store numbers: r = −0.05, and the four groups split 57 · 56 · 57 · 56.')],
+    [L('노인이 많은 곳은 손님이 적어 편의점이 버티지 못한다.','Older areas lack customers, so stores cannot survive there.'),
+     L('양양군은 고령 비율이 36.7%인데도 1,000명당 편의점이 2.97개로 전국 2위입니다. 관광객, 1인가구, 슈퍼마켓 같은 다른 요인이 편의점 수를 크게 바꿉니다.','Yangyang is 36.7% elderly yet ranks 2nd nationally with 2.97 stores per 1,000. Visitors, one-person households and supermarkets move store numbers a lot.')],
+    [L('도시든 시골이든 같은 관계가 나타난다.','The same pattern holds in cities and the countryside.'),
+     L('관계는 군 82곳에서만 보였습니다(10%p당 −0.24개, r = −0.33). 구(+0.01)와 시(+0.06)에서는 거의 0이었습니다.','The link appeared only in the 82 rural counties (−0.24 per 10 pp, r = −0.33). In gu (+0.01) and si (+0.06) it was close to zero.')],
+  ];
+  const IMPL=[
+    [L('“고령 지역 = 편의점 부족”으로 단정하지 않기','Do not equate “aging area” with “store shortage”'),
+     L('생활 인프라를 판단할 때 노인 비율 하나로 지역을 분류하면 틀릴 수 있습니다. 인구밀도와 지역 유형(구·시·군)을 함께 봐야 합니다.','Classifying areas by elderly share alone can mislead. Look at density and area type (gu, si, gun) together.')],
+    [L('시골(군)은 따로, 더 가까이','Look at rural counties separately and more closely'),
+     L('군에서만 노인이 많을수록 편의점이 적은 경향이 보였습니다. 이 신호가 진짜인지 읍·면 단위 자료로 확인할 가치가 있습니다.','Only rural counties showed fewer stores with more older residents. Town- and township-level data can show whether that signal is real.')],
+    [L('단순 비교만으로 결론 내리지 않기','Do not conclude from a raw comparison'),
+     L('그냥 비교한 결과(−0.02)와 조건을 맞춘 결과(−0.19, −0.06)가 달랐습니다. 숨은 요인을 맞추지 않으면 결론이 바뀔 수 있다는 것이 이번 분석의 가장 큰 교훈입니다.','The raw comparison (−0.02) and the controlled ones (−0.19, −0.06) disagreed. Hidden factors can change the answer: that is the main lesson of this analysis.')],
+  ];
+  return h('section',{className:'tile concl',id:'int-conclusion'},h('div',{className:'container'},
+    h('p',{className:'eyebrow center'},L('결론','Conclusion')),
+    h('h2',{className:'tile-h'},L('통념은 확인되지 않았고, 시골에서만 신호가 남았습니다','The belief did not hold up; a signal remains only in rural counties')),
+    h('p',{className:'tile-sub'},L('지금까지의 가설, 데이터, 분석을 한곳에 정리했습니다.','Everything from the hypothesis, data and analysis, in one place.')),
+    h('div',{className:'qa'},
+      h('article',{className:'ucard'},h('p',{className:'wk'},L('검증한 가설','Hypothesis tested')),
+        h('h3',null,L('비슷한 조건의 시군구끼리 비교해도, 고령 비율이 10%p 높으면 인구 1,000명당 편의점이 0.1개 넘게 적다.','Even among comparable districts, a 10 pp higher elderly share means more than 0.1 fewer stores per 1,000 residents.')),
+        h('p',{className:'why'},L('0.1개는 평균(1.12개)의 약 9%, 인구 14만 명 동네라면 편의점 약 14곳입니다. 결과를 보기 전에 정한 기준입니다.','0.1 is about 9% of the average (1.12), or roughly 14 stores in a district of 140,000. We set it before looking at results.'))),
+      h('article',{className:'ucard'},h('p',{className:'wk'},L('판정','Verdict')),
+        h('p',{style:{margin:'6px 0 0'}},h('span',{className:'verdict-k'},L('아직 판단하기 어렵다','Too early to tell'))),
+        h('h3',null,L('최종 추정치는 −0.06개로 기준(−0.1개)보다 작고, 95% 범위(−0.27 ~ +0.15)가 기준선 양쪽에 걸쳐 있습니다.','The final estimate, −0.06, is smaller than the −0.1 threshold, and its 95% range (−0.27 to +0.15) sits on both sides of it.')),
+        h('p',{className:'why'},L('그래서 “적어진다”고도, “차이가 없다”고도 말할 수 없습니다.','So we can say neither “fewer” nor “no difference”.')))),
+    h('div',{className:'blk'},
+      h('h3',{className:'sec'},L('세 가지 방법의 결과','Results from three methods')),
+      h('p',{className:'secsub'},L('단위: 고령 비율이 10%p 높을 때 1,000명당 편의점 수 변화. 회색 띠 = 의미 없는 차이(±0.1개).','Unit: change in stores per 1,000 residents for a 10 pp higher elderly share. Grey band = no meaningful difference (±0.1).')),
+      h('div',{className:'rwrap'},h('table',{className:'rtable'},
+        h('thead',null,h('tr',null,[L('방법','Method'),L('추정치','Estimate'),L('95% 범위','95% range'),'',L('기준과 비교','Against the threshold')].map((t,i)=>h('th',{key:i,scope:'col'},t)))),
+        h('tbody',null,RESULTS.map(k=>{const st=status(k); return h('tr',{key:k.id,className:k.main?'final':''},
+          h('td',null,h('b',null,k.name),k.main?h('span',{className:'tagf'},L('최종','Final')):null),
+          h('td',{className:'num'},sgn(k.b)),
+          h('td',{className:'num'},sgn(k.lo)+' ~ '+sgn(k.hi)),
+          h('td',null,h(CIbar,{lo:k.lo,hi:k.hi,b:k.b,final:k.main})),
+          h('td',null,h('span',{className:'st '+st[0]},st[1])));})))),
+      h('p',{className:'tile-note',style:{textAlign:'left'}},L('군 82곳만 따로 보면 단순 기울기는 −0.24개였지만, 군끼리도 소득·인구밀도를 맞추면 범위가 −0.70 ~ +0.14개로 넓어집니다.','Rural counties alone gave a raw slope of −0.24, but once income and density are held fixed within counties the range widens to −0.70 to +0.14.'))),
+    h('div',{className:'blk'},
+      h('h3',{className:'sec'},L('통념과 실제','Myth vs reality')),
+      h('p',{className:'secsub'},L('흔히 하는 말과 데이터가 보여준 것을 나란히 놓았습니다.','What people often say, next to what the data showed.')),
+      h('div',{className:'mvr'},MVR.map((r,i)=>h('div',{key:i,className:'row'},
+        h('div',{className:'myth'},h('span',{className:'lab'},L('통념','Myth')),r[0]),
+        h('div',{className:'arr','aria-hidden':'true'},'→'),
+        h('div',{className:'real'},h('span',{className:'lab'},L('데이터','Data')),r[1]))))),
+    h('div',{className:'blk'},
+      h('h3',{className:'sec'},L('이 결과가 뜻하는 것','What this means in practice')),
+      h('p',{className:'secsub'},L('데이터가 뒷받침하는 범위 안에서만 정리했습니다.','Kept within what the data support.')),
+      h('div',{className:'impl'},IMPL.map((c,i)=>h('article',{key:i,className:'ucard'},h('h4',null,c[0]),h('p',null,c[1]))))),
+    h('div',{className:'callout'},
+      h('p',{className:'k'},L('제안','Recommendation')),
+      h('p',{className:'big2'},L('고령화 지역의 생활 편의를 판단할 때는 편의점 수 하나가 아니라, 슈퍼마켓·약국을 포함한 생활 가게 전체를 읍·면 단위로, 여러 해에 걸쳐 함께 보아야 합니다.','To judge everyday access in aging areas, look beyond convenience-store counts: include supermarkets and pharmacies, use town-level data, and follow it over several years.')))));
+}
 function Closing(){
   return h('section',{className:'next tile'},h('div',{className:'narrow'},
     h('p',{className:'eyebrow'},'한 줄 요약'),
@@ -2242,12 +2447,12 @@ function Closing(){
 }
 
 function InterpretationPage(){
-  return h(React.Fragment,null,h(IntHero),h(Learn),h(Say),h(Care),h(NextSteps),h(Closing));
+  return h(React.Fragment,null,h(IntHero),h(Learn),h(Say),h(Care),h(NextSteps),h(Conclusion),h(Closing));
 }
 
 function App(){
   const [lang,setLangState]=useState(()=>{try{const v=localStorage.getItem('g18-lang'); if(v==='ko'||v==='en') return v;}catch(e){}
-    return (navigator.language||'').toLowerCase().startsWith('ko')?'ko':'en';});
+    return 'en';});
   LANG=lang;
   const setLang=l=>{try{localStorage.setItem('g18-lang',l);}catch(e){} setLangState(l);};
   const [cur,fill]=useChapter();
@@ -2276,7 +2481,7 @@ function App(){
   useEffect(()=>{const id=decodeURIComponent((location.hash||'').slice(1)); if(id){const el=document.getElementById(id); if(el) el.scrollIntoView();}},[]);
   return h(React.Fragment,null,
     h('a',{className:'skip',href:'#main'},L('본문으로 건너뛰기','Skip to content')),
-    h(GlobalNav,{lang,setLang}),h(ChapNav,{cur,fill}),
+    h(SiteNav,{lang,setLang,cur,fill}),
     h('main',{id:'main',key:lang},
       h('div',{id:'home'},h(Hero),h(Summary),h(Background),h(Guide),h(MapTile)),
       h('div',{id:'hypothesis',className:'chapter'},h(HypothesisPage)),
