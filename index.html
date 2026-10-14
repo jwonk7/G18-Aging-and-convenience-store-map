@@ -12,7 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121214'/%3E%3Ccircle cx='32' cy='32' r='18' fill='%23a1a1a6' opacity='.35'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23ffffff'/%3E%3C/svg%3E">
 <style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;600;700&display=swap">
 <style>
 /* Layout: Apple tile stack (DESIGN.md) — global-nav 44 · sub-nav-frosted 52 · light hero tile · dark product tile (interactive map + readout cards) · parchment footer. Single-look system: light tiles and dark tiles are both part of the design. */
 :root{
@@ -24,8 +24,8 @@
   /* data ramp on dark tiles: neutral greys only (no second accent) */
   --d0:#4a4a4f; --d1:#ffffff;
   /* type */
-  --f-display:"Plus Jakarta Sans","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
-  --f-text:"Plus Jakarta Sans","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-display:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Inter","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  --f-text:"SF Pro Text",-apple-system,BlinkMacSystemFont,"Inter","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
   --f-mono:var(--f-text);
   /* radius */ --r-sm:8px; --r-md:11px; --r-lg:18px; --r-pill:9999px;
   /* spacing */ --s-xxs:4px; --s-xs:8px; --s-sm:12px; --s-md:17px; --s-lg:24px; --s-xl:32px; --s-xxl:48px; --s-section:80px;
@@ -689,6 +689,71 @@ html{scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
   .snsteps .nl.done+.nl::before,.snsteps .nl.on::before{background:var(--primary)}
   html{scroll-padding-top:calc(132px + env(safe-area-inset-top,0px))}
 }
+
+
+/* ===== v9: Apple typography (DESIGN-apple.md) — weights 300/400/600/700, no 500/800 ===== */
+body{font-family:var(--f-text);font-size:17px;font-weight:400;line-height:1.47;letter-spacing:-0.374px;font-feature-settings:"ss03"}
+h1,h2,h3,.tile-h,.who,.fv,.next h2,.dark h2,.statn,.big,.counter .cn,.sumgrid .n,.herofacts b,.qn,.concl h3.sec,.callout p.big2,.snbrand b{font-family:var(--f-display);font-weight:600}
+.hero h1{font-size:56px;font-weight:600;line-height:1.07;letter-spacing:-0.28px}
+.tile-h,.dark h2,.next h2{font-size:40px;font-weight:600;line-height:1.1;letter-spacing:-0.01em}
+.chapter>.hero h1{font-size:40px;line-height:1.1;letter-spacing:-0.01em}
+.hero .lead,.chapter>.hero .lead{font-weight:300;line-height:1.5;letter-spacing:0}
+.tile-sub,.dark .sub{font-size:21px;font-weight:400;line-height:1.38;letter-spacing:.2px}
+.eyebrow{font-family:var(--f-display);font-size:21px;font-weight:600;line-height:1.19;letter-spacing:.231px}
+.ucard h3,.card h3,.mapguide h3,.impl .ucard h4,.sumgrid h3,.concl .qa h3{font-family:var(--f-display);font-weight:600;letter-spacing:-0.374px}
+.statn,.big,.sumgrid .n,.herofacts b,.counter .cn{letter-spacing:-0.28px}
+.why,.body-d,.mapguide p,.caselist p,.impl .ucard p,.mvr .myth,.mvr .real,.cmp,.ucard .hyp{font-size:14px;line-height:1.43;letter-spacing:-0.224px}
+.bgtext p{font-size:17px;line-height:1.47;letter-spacing:-0.374px}
+.wk,.card .k,.sumgrid .k,.k{font-size:14px;font-weight:600;line-height:1.29;letter-spacing:-0.224px}
+.note,.maphint,.tile-note,.flow-note,.axisnote,.legal,.herocap{font-size:12px;letter-spacing:-0.12px}
+.tl,.strip text,.zoomlabel{font-family:var(--f-text);letter-spacing:-0.12px}
+.btn{font-weight:400;letter-spacing:-0.374px}
+.btn-sm,.chip{font-size:14px;letter-spacing:-0.224px}
+.snlinks .nl{font-size:14px;font-weight:400;letter-spacing:-0.224px}
+.snlinks .nl.on{font-weight:600}
+.snsub,.snlang button,.nl .cn{letter-spacing:-0.12px}
+.snlang button{font-weight:600}
+.dtable,.rtable{letter-spacing:-0.224px}
+footer h3{font-size:14px;font-weight:600;letter-spacing:-0.224px}
+footer li{font-size:14px;letter-spacing:-0.224px}
+@media (max-width:1068px){.hero h1{font-size:40px;line-height:1.1}}
+@media (max-width:640px){.hero h1{font-size:34px}.tile-h,.dark h2,.next h2,.chapter>.hero h1{font-size:28px}.tile-sub,.dark .sub{font-size:17px}}
+@media (max-width:419px){.hero h1{font-size:28px}}
+
+
+/* ===== v10: test results dashboard ===== */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-md);margin-bottom:var(--s-lg)}
+@media (max-width:1068px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.kpis{grid-template-columns:1fr}}
+.kpi{display:flex;flex-direction:column;gap:6px}
+.kpi .kv{margin:0;font-family:var(--f-display);font-size:34px;font-weight:600;line-height:1.1;letter-spacing:-0.28px;font-variant-numeric:tabular-nums}
+.kpi .kv small{font-size:15px;font-weight:400;color:var(--ink-48);letter-spacing:-0.224px}
+.kpi .why{margin:0}
+.kpi.dark{background:#1d1d1f;border-color:#1d1d1f;color:#fff}
+.kpi.dark .wk{color:#a1a1a6}.kpi.dark .why{color:#cccccc}
+.dashbar{margin:0 0 var(--s-md);align-items:center}
+.dashcount{margin-left:auto;font-size:14px;color:var(--ink-48);font-variant-numeric:tabular-nums}
+.dashcard{margin-bottom:var(--s-lg)}
+.dhead{margin-bottom:var(--s-md)}
+.dhead h3{margin:0 0 4px;font-size:21px}
+.dhead .why{margin:0;max-width:62em}
+.forest svg{display:block;width:100%;height:auto}
+.fl{font-family:var(--f-text);font-size:14px;fill:#1d1d1f;letter-spacing:-0.224px}
+.dtests td{vertical-align:top}
+.dtests .sub2{display:block;font-size:12px;color:var(--ink-48);margin-top:3px;letter-spacing:-0.12px}
+.dtests tr.hl td{background:#f5f5f7}
+.bdg{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.bdg .bi{font-size:10px}
+.bdg.yes{background:#1d1d1f;color:#fff}.bdg.no{background:#f0f0f2;color:#333}
+.bdg.below{background:#e8f1fb;color:#0058b0}.bdg.in{background:#f0f0f2;color:#333}.bdg.cross{background:#fff4e5;color:#8a4b00}
+.src{font-size:12px;font-weight:600;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.src.team{background:#e8f1fb;color:#0058b0}.src.calc{background:#f0f0f2;color:#555}
+.muted{color:var(--ink-48)}
+.tags{margin-left:8px;font-size:11px;font-weight:600;color:#555;background:#f0f0f2;border-radius:999px;padding:2px 8px;vertical-align:1px}
+.readgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-lg)}
+@media (max-width:900px){.readgrid{grid-template-columns:1fr}}
+.readgrid h4{margin:0 0 8px;font-size:17px;font-family:var(--f-display);font-weight:600;letter-spacing:-0.374px}
+.readgrid .why{margin:0}
 
 /* findings */
 .mini{max-width:340px}
@@ -1460,6 +1525,7 @@ function SiteNav({lang,setLang,cur,fill}){
       h('a',{className:'nl ncta',href:'#int-conclusion',onClick:close},L('결론 보기 →','See the conclusion →')))),
     h('div',{className:'snprog','aria-hidden':'true'},h('i',{ref:fill})));
 }
+DICT['평균 근로소득']='Average wage income';
 const SUBNAV={
   home:{title:'편의점 불빛 지도',links:[['개요','overview'],['배경','background'],['구성','guide'],['지도','map']],cta:['지도 보기','map']},
   hypothesis:{title:'가설',links:[['왜 다듬었나','hyp-why'],['영향 요인','hyp-map'],['질문','hyp-questions'],['기준','hyp-threshold']],cta:['영향 요인 보기','hyp-map']},
@@ -1499,7 +1565,7 @@ function Summary(){
     {k:L('전국 226곳','All 226 districts'),t:L('노인 비율만으로는 편의점 수를 짐작할 수 없었습니다','The elderly share alone did not predict store numbers'),
      n:'57 · 56 · 57 · 56',u:L('곳','districts'),d:L('고령 비율과 편의점 밀도로 나눈 네 무리의 크기가 거의 같습니다.','The four groups split by elderly share and store density are almost the same size.'),to:'ana-map'},
     {k:L('조건을 맞춘 최종 결과','Final result, like for like'),t:L('“조금 줄어든다” 쪽이지만 판단할 만큼 확실하지 않습니다','Leans toward “slightly fewer”, but not clearly enough to decide'),
-     n:'−0.06',u:L('개 (범위 −0.27 ~ +0.15)','(range −0.27 to +0.15)'),d:L('노인 비율이 10%p 높을 때 1,000명당 편의점 변화입니다. 미리 정한 기준은 ±0.1개였습니다.','Change in stores per 1,000 residents for a 10 pp higher elderly share. Our preset threshold was ±0.1.'),to:'ana-verdict'},
+     n:'−0.06',u:L('개 (범위 −0.27 ~ +0.15)','(range −0.27 to +0.15)'),d:L('노인 비율이 10%p 높을 때 1,000명당 편의점 변화입니다. 미리 정한 기준은 ±0.1개였습니다.','Change in stores per 1,000 residents for a 10 pp higher elderly share. Our preset threshold was ±0.1.'),to:'ana-dashboard'},
     {k:L('군 82곳만 보면','Rural counties (gun) only'),t:L('노인이 많을수록 편의점이 적은 경향이 보입니다','Older counties tend to have fewer stores'),
      n:'−0.24',u:L('개','per 1,000'),d:L('구(+0.01)와 시(+0.06)에서는 보이지 않았습니다. 읍·면 단위 자료로 더 확인해야 합니다.','Not seen in gu (+0.01) or si (+0.06). Town-level data are needed to confirm it.'),to:'ana-type'},
   ];
@@ -1780,7 +1846,7 @@ const NODES={
   Y:{x:730,y:250,label:'편의점 수',sub:'인구 1,000명당',role:'main'},
   D:{x:150,y:80,label:'인구밀도',sub:'사람이 몰려 사는 정도',role:'fake'},
   U:{x:400,y:60,label:'도시 · 시골',sub:'구 · 시 · 군',role:'fake'},
-  I:{x:640,y:60,label:'소득',sub:'평균 월급',role:'fake'},
+  I:{x:640,y:60,label:'소득',sub:'평균 근로소득',role:'fake'},
   F:{x:860,y:130,label:'관광객',sub:'방문자 수',role:'fake'},
   O:{x:380,y:440,label:'혼자 사는 가구',sub:'1인가구 비율',role:'real'},
   S:{x:640,y:440,label:'슈퍼마켓',sub:'인구 1,000명당',role:'real'},
@@ -2268,8 +2334,99 @@ function VerdictTile(){
       h('p',{className:'why'},'226개 시군구를 조건을 맞춰 비교해도 “노인이 많으면 편의점이 적다”는 주장은 확인되지 않았습니다. 그렇다고 “관계가 없다”고 결론 내릴 근거도 충분하지 않습니다. 군 지역에서 나타난 경향은 추가 자료를 통한 검증이 필요합니다.'))));
 }
 
+
+/* ---------- test results dashboard ---------- */
+// scope: all | gu | si | gun ; src: team = team analysis, calc = recomputed from this page's table
+const TESTS=[
+  {id:'pearson',scope:'all',src:'calc',name:['피어슨 상관','Pearson correlation'],what:['고령 비율 ↔ 1,000명당 편의점','Elderly share ↔ stores per 1,000'],n:226,stat:'r = −0.054',p:0.4225},
+  {id:'spearman',scope:'all',src:'calc',name:['스피어먼 순위상관','Spearman rank correlation'],what:['순위 기준 같은 관계','Same link, by rank'],n:226,stat:'ρ = −0.116',p:0.0825},
+  {id:'chi',scope:'all',src:'calc',name:['카이제곱 독립성 검정','Chi-square test of independence'],what:['중앙값으로 나눈 2×2 표 (57·56·56·57)','2×2 median split (57 · 56 · 56 · 57)'],n:226,stat:'χ² = 0.02',p:0.894},
+  {id:'raw',scope:'all',src:'team',name:['단순 회귀 (OLS)','Simple regression (OLS)'],what:['고령 비율만 넣음','Elderly share only'],n:226,b:-0.024,lo:-0.077,hi:0.029,p:0.3712},
+  {id:'ols',scope:'all',src:'team',name:['다중 회귀 (OLS, HC3)','Multiple regression (OLS, HC3)'],what:['인구밀도·아파트·소득·성비·도시/군 통제','Controls: density, apartments, income, sex ratio, city/county'],n:226,b:-0.194,lo:-0.327,hi:-0.061,p:0.0041},
+  {id:'dml',scope:'all',src:'team',name:['이중 머신러닝 (DML)','Double machine learning (DML)'],what:['같은 통제, 랜덤포레스트 · 20회 중앙값','Same controls, random forests · median of 20 runs'],n:226,b:-0.059,lo:-0.266,hi:0.148,p:0.575,final:true},
+  {id:'dmlg',scope:'all',src:'team',sens:true,name:['DML 민감도: GBM','DML check: gradient boosting'],what:['학습기만 바꿈','Same model, different learner'],n:226,b:-0.042,lo:-0.267,hi:0.183,p:0.715},
+  {id:'dmll',scope:'all',src:'team',sens:true,name:['DML 민감도: Lasso','DML check: lasso'],what:['보조 모형 설명력이 낮음 (편의점 R² 0.04)','Weak nuisance fit (store model R² 0.04)'],n:226,b:-0.178,lo:-0.326,hi:-0.029,p:0.019},
+  {id:'gu',scope:'gu',src:'team',name:['구만: 단순 회귀','Gu only: simple regression'],what:['대도시 자치구','Big-city districts'],n:69,b:0.006,lo:-0.262,hi:0.274,p:0.9628},
+  {id:'guc',scope:'gu',src:'team',name:['구만: 조건 맞춤','Gu only: with controls'],what:['구 안에서 인구밀도·아파트·소득·성비 통제','Density, apartments, income, sex ratio held fixed'],n:69,b:0.012,lo:-0.267,hi:0.291,p:0.9337},
+  {id:'si',scope:'si',src:'team',name:['시만: 단순 회귀','Si only: simple regression'],what:['중소도시','Mid-sized cities'],n:75,b:0.064,lo:-0.043,hi:0.17,p:0.2411},
+  {id:'sic',scope:'si',src:'team',name:['시만: 조건 맞춤','Si only: with controls'],what:['시 안에서 인구밀도·아파트·소득·성비 통제','Density, apartments, income, sex ratio held fixed'],n:75,b:-0.021,lo:-0.269,hi:0.228,p:0.8702},
+  {id:'gun',scope:'gun',src:'team',name:['군만: 단순 회귀','Gun only: simple regression'],what:['시골 군','Rural counties'],n:82,b:-0.237,lo:-0.371,hi:-0.102,p:0.0006},
+  {id:'gunc',scope:'gun',src:'team',name:['군만: 조건 맞춤','Gun only: with controls'],what:['군 안에서 인구밀도·아파트·소득·성비 통제','Density, apartments, income, sex ratio held fixed'],n:82,b:-0.279,lo:-0.70,hi:0.142,p:0.1939},
+];
+const SCOPES=[['all',['전체','All'],226],['gu',['구','Gu'],69],['si',['시','Si'],75],['gun',['군','Gun'],82]];
+const isSig=t=>t.p!=null?t.p<0.05:(t.lo!=null?(t.hi<0||t.lo>0):false);
+const thrOf=t=>t.lo==null?null:t.hi<-0.1?'below':(t.lo>-0.1&&t.hi<0.1)?'in':'cross';
+const fmtP=p=>p==null?'—':p<0.001?'< 0.001':p.toFixed(3);
+const sg=v=>(v<0?'−':'+')+Math.abs(v).toFixed(2);
+function Badge({kind,children}){return h('span',{className:'bdg '+kind},h('span',{className:'bi','aria-hidden':'true'},kind==='yes'?'●':kind==='no'?'○':kind==='below'?'▼':kind==='in'?'=':'↔'),children);}
+function Forest({rows,hover,setHover}){
+  const ref=useRef(null); const W=useWidth(ref,760); const narrow=W<560;
+  const LW=narrow?0:230, P=16, ROW=40, TOP=34, lo=-0.75, hi=0.35;
+  const x=v=>LW+P+(v-lo)/(hi-lo)*(W-LW-2*P); const H=TOP+ROW*rows.length+38;
+  const ticks=narrow?[-0.6,-0.3,-0.1,0,0.1,0.3]:[-0.7,-0.5,-0.3,-0.1,0,0.1,0.3];
+  return h('div',{ref,className:'forest'},h('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':L('모든 추정치와 95% 범위','All estimates with 95% ranges')},
+    h('rect',{x:x(-0.1),y:TOP-12,width:x(0.1)-x(-0.1),height:ROW*rows.length+6,rx:4,style:{fill:'#ececf0'}}),
+    h('text',{x:(x(-0.1)+x(0.1))/2,y:TOP-18,textAnchor:'middle',className:'tl'},L('의미 없는 차이 ±0.1','No meaningful difference ±0.1')),
+    ticks.map(t=>h('g',{key:t},h('line',{x1:x(t),x2:x(t),y1:TOP-8,y2:TOP+ROW*rows.length,style:{stroke:t===0?'#1d1d1f':'#e0e0e0',strokeWidth:t===0?1.2:1}}),
+      h('text',{x:x(t),y:TOP+ROW*rows.length+16,textAnchor:'middle',className:'tl'},t===0?'0':sg(t).replace(/0$/,'')))),
+    h('text',{x:x(lo),y:TOP+ROW*rows.length+32,className:'tl'},L('← 편의점 적어짐','← fewer stores')),
+    h('text',{x:x(hi),y:TOP+ROW*rows.length+32,textAnchor:'end',className:'tl'},L('많아짐 →','more →')),
+    rows.map((t,i)=>{const y=TOP+ROW*i+ROW/2-6, on=hover===t.id, col=t.final?'var(--primary)':isSig(t)?'#1d1d1f':'#8e8e93';
+      return h('g',{key:t.id,onPointerEnter:()=>setHover(t.id),onPointerLeave:()=>setHover(null),style:{cursor:'default'}},
+        h('rect',{x:0,y:y-ROW/2+4,width:W,height:ROW-4,rx:6,style:{fill:on?'#f5f5f7':'transparent'}}),
+        !narrow&&h('text',{x:P,y:y+4,className:'fl',style:{fontWeight:t.final?600:400}},L(t.name[0],t.name[1])),
+        narrow&&h('text',{x:x(t.lo),y:y-9,className:'tl',style:{fill:'#333'}},L(t.name[0],t.name[1])),
+        h('line',{x1:x(Math.max(lo,t.lo)),x2:x(Math.min(hi,t.hi)),y1:y,y2:y,style:{stroke:col,strokeWidth:t.final?5:3.5,strokeLinecap:'round',strokeDasharray:t.b==null?'2 5':null}}),
+        t.b!=null&&h('circle',{cx:x(t.b),cy:y,r:t.final?6.5:5,style:{fill:col,stroke:'#fff',strokeWidth:2}}),
+        t.b!=null&&on&&h('text',{x:x(t.b),y:y-10,textAnchor:'middle',className:'tl',style:{fill:'#1d1d1f',fontWeight:600}},sg(t.b)+'  ['+sg(t.lo)+', '+sg(t.hi)+']'));})));
+}
+function Dashboard(){
+  const [scope,setScope]=useState('all'); const [hover,setHover]=useState(null);
+  const rows=TESTS.filter(t=>scope==='all'||t.scope===scope||(scope!=='all'&&t.id==='dml'));
+  const ci=TESTS.filter(t=>t.lo!=null).filter(t=>scope==='all'||t.scope===scope||t.id==='dml');
+  const nSig=TESTS.filter(isSig).length;
+  const kpi=(k,v,u,d,cls)=>h('div',{className:'ucard kpi'+(cls?' '+cls:'')},h('p',{className:'wk'},k),h('p',{className:'kv'},v,u?h('small',null,u):null),h('p',{className:'why'},d));
+  return h('section',{className:'parch tile',id:'ana-dashboard'},h('div',{className:'container'},
+    h('p',{className:'eyebrow center'},L('검정 결과 대시보드','Test results dashboard')),
+    h('h2',{className:'tile-h'},L('모든 검정을 한눈에','Every test at a glance')),
+    h('p',{className:'tile-sub'},L('통계적으로 유의한지(p < 0.05)와, 미리 정한 기준(±0.1개)을 넘는지는 다른 질문입니다. 둘을 나란히 봅니다.','Being statistically significant (p < 0.05) and clearing our preset ±0.1 threshold are different questions. Here they sit side by side.')),
+    h('div',{className:'kpis'},
+      kpi(L('최종 판정','Final verdict'),L('판단 보류','Too early to tell'),null,L('최종 추정치의 범위가 기준선 양쪽에 걸침','The final range sits on both sides of the threshold'),'dark'),
+      kpi(L('최종 추정치 (DML)','Final estimate (DML)'),'−0.06',L(' 개','  per 1,000'),L('95% 범위 −0.27 ~ +0.15 · 10%p당','95% range −0.27 to +0.15 · per 10 pp')),
+      kpi(L('전국 상관','Nationwide correlation'),'r = −0.05',null,L('p = 0.42 · 관계 거의 없음','p = 0.42 · almost no link')),
+      kpi(L('군 82곳 상관','Rural counties (82)'),'r = −0.33',null,L('p = 0.002 · 유일하게 뚜렷한 신호','p = 0.002 · the only clear signal'))),
+    h('div',{className:'toolbar light dashbar',role:'group','aria-label':L('범위','Scope')},h('span',{className:'lbl'},L('범위','Scope')),
+      SCOPES.map(([k,t,n])=>h('button',{key:k,className:'chip light','aria-pressed':scope===k,onClick:()=>setScope(k)},L(t[0],t[1])+' · '+n)),
+      h('span',{className:'dashcount'},L(`유의한 검정 ${nSig} / ${TESTS.length}`,`${nSig} of ${TESTS.length} tests significant`))),
+    h('div',{className:'ucard dashcard'},
+      h('div',{className:'dhead'},h('h3',null,L('추정치와 95% 신뢰구간','Estimates and 95% confidence intervals')),
+        h('p',{className:'why'},L('단위: 고령 비율 10%p당 1,000명당 편의점 변화. 파랑 = 최종 결과, 검정 = 통계적으로 유의, 회색 = 유의하지 않음. 막대에 마우스를 올리면 값이 보입니다.','Unit: change in stores per 1,000 per 10 pp of elderly share. Blue = final result, black = significant, grey = not significant. Hover a bar for its values.'))),
+      h(Forest,{rows:ci,hover,setHover})),
+    h('div',{className:'ucard dashcard'},
+      h('div',{className:'dhead'},h('h3',null,L('검정별 결과표','Results by test')),
+        h('p',{className:'why'},L('팀 = 팀 분석 결과(OLS_Results, DML_Results 파일) · 재계산 = 이 사이트의 226개 시군구 표로 다시 계산한 상관·카이제곱 검정. “DML 민감도” 두 줄은 학습기만 바꾼 점검이며 최종 결과가 아닙니다.','Team = the team’s result files (OLS and DML) · Recomputed = correlation and chi-square tests recalculated from this site’s 226-district table. The two “DML check” rows only swap the learner; they are not the final result.'))),
+      h('div',{className:'rwrap'},h('table',{className:'rtable dtests'},
+        h('thead',null,h('tr',null,[L('검정','Test'),'n',L('통계량 / 추정치','Statistic / estimate'),'p',L('유의성 (5%)','Significance (5%)'),L('기준 ±0.1','Threshold ±0.1'),L('출처','Source')].map((t,i)=>h('th',{key:i,scope:'col'},t)))),
+        h('tbody',null,rows.map(t=>{const th=thrOf(t);
+          return h('tr',{key:t.id,className:(t.final?'final ':'')+(hover===t.id?'hl':''),onPointerEnter:()=>setHover(t.id),onPointerLeave:()=>setHover(null)},
+            h('td',null,h('b',null,L(t.name[0],t.name[1])),t.final?h('span',{className:'tagf'},L('최종','Final')):t.sens?h('span',{className:'tags'},L('민감도','Check')):null,h('span',{className:'sub2'},L(t.what[0],t.what[1]))),
+            h('td',{className:'num'},t.n),
+            h('td',{className:'num'},t.b!=null?sg(t.b)+' ['+sg(t.lo)+', '+sg(t.hi)+']':t.lo!=null?'['+sg(t.lo)+', '+sg(t.hi)+']':t.stat),
+            h('td',{className:'num'},t.p!=null?fmtP(t.p):(t.lo!=null?(isSig(t)?L('< 0.05 (구간)','< 0.05 (CI)'):L('≥ 0.05 (구간)','≥ 0.05 (CI)')):'—')),
+            h('td',null,isSig(t)?h(Badge,{kind:'yes'},L('유의함','Significant')):h(Badge,{kind:'no'},L('유의하지 않음','Not significant'))),
+            h('td',null,th==null?h('span',{className:'muted'},'—'):th==='below'?h(Badge,{kind:'below'},L('기준 아래','Below')):th==='in'?h(Badge,{kind:'in'},L('차이 없음','No difference')):h(Badge,{kind:'cross'},L('걸침','Straddles'))),
+            h('td',null,h('span',{className:'src '+t.src},t.src==='team'?L('팀','Team'):L('재계산','Recomputed'))));}))))),
+    h('div',{className:'readgrid'},
+      h('div',{className:'ucard'},h('h4',null,L('유의하지만 기준은 못 넘은 경우','Significant, but not past the threshold')),
+        h('p',{className:'why'},L('다중 회귀(−0.19)는 구간이 0을 포함하지 않아 통계적으로는 유의합니다. 하지만 구간 끝(−0.06)이 기준선(−0.1) 안쪽이라 “의미 있게 적다”고는 말할 수 없습니다.','Multiple regression (−0.19) excludes zero, so it is statistically significant. But its upper end (−0.06) sits inside the −0.1 line, so we cannot call the difference meaningful.'))),
+      h('div',{className:'ucard'},h('h4',null,L('군에서만 남는 신호','A signal only in rural counties')),
+        h('p',{className:'why'},L('군만 보면 상관(r = −0.33, p = 0.002)과 기울기(−0.24, 구간 −0.37 ~ −0.10, p < 0.001)가 모두 뚜렷합니다. 그러나 군 안에서 인구밀도·소득 등을 맞추면 추정치는 −0.28이지만 구간이 −0.70 ~ +0.14로 넓어져 유의성이 사라집니다(p = 0.19).','For rural counties alone, both the correlation (r = −0.33, p = 0.002) and the slope (−0.24, CI −0.37 to −0.10, p < 0.001) are clear. Once density, income and the rest are held fixed within counties, the estimate is −0.28 but the range widens to −0.70 to +0.14 and significance disappears (p = 0.19).'))),
+      h('div',{className:'ucard'},h('h4',null,L('왜 최종은 DML인가','Why DML is the final result')),
+        h('p',{className:'why'},L('통제 변수와 편의점 수의 관계가 직선이 아닐 수 있어, 랜덤포레스트로 유연하게 걸러낸 DML을 최종으로 정했습니다. 5겹 교차적합을 20번 반복해 가운데 값을 썼습니다. 학습기를 GBM으로 바꿔도 결론은 같았고, Lasso는 유의하게 나왔지만(−0.18) 보조 모형 설명력이 낮아(R² 0.04) 최종으로 쓰지 않았습니다.','The controls may relate to store numbers in non-linear ways, so we chose DML, which filters them flexibly with random forests, as the final result: 5-fold cross-fitting repeated 20 times, median reported. Swapping in gradient boosting gives the same answer; lasso comes out significant (−0.18) but its nuisance model explains little (R² 0.04), so it is not used.'))))));
+}
+
 function AnalysisPage(){
-  return h(React.Fragment,null,h(AnaHero),h(QuadTile),h(ScatterTile),h(VerdictTile));
+  return h(React.Fragment,null,h(AnaHero),h(QuadTile),h(ScatterTile),h(VerdictTile),h(Dashboard));
 }
 
 /* ---------- 해석 page ---------- */
