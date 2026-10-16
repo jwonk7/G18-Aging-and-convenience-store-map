@@ -1097,7 +1097,7 @@ const DICT={
 "노인 적고 편의점 적음": "Fewer elderly, fewer stores",
 "구": "Gu",
 "고령 비율이 높은 지역이라고 편의점이 뚜렷하게 적지는 않았습니다": "Districts with more older residents did not have clearly fewer stores",
-"전국 단위에서는 그렇습니다. 다만 군 지역만 따로 보면 고령 비율이 높을수록 편의점이 적은 경향이 나타났습니다. 지역별 결과는 아래 지도에서 확인할 수 있습니다.": "This holds at the national level. When rural counties (gun) are examined separately, however, a higher elderly share is associated with fewer stores. Results for each district can be viewed on the map below.",
+"전국 단위에서는 그렇습니다. 다만 군 지역만 따로 보면 단순 비교에서 고령 비율이 높을수록 편의점이 적은 경향이 나타났습니다(인구밀도·소득 등 조건을 맞추면 불확실). 지역별 결과는 아래 지도에서 확인할 수 있습니다.": "This holds at the national level. When rural counties (gun) are examined separately, however, a simple comparison shows a higher elderly share going with fewer stores (uncertain once density, income and other conditions are matched). Results for each district can be viewed on the map below.",
 "지도로 보기": "See the map",
 "시군구를 네 가지 색으로 나눈 지도": "Map of districts in four colors",
 "“노인 많은 동네 = 편의점 적은 동네”라면": "If “more elderly = fewer stores” were true",
@@ -1162,14 +1162,14 @@ const DICT={
 "인구밀도·소득 등을 맞추면 결과가 ‘조금 적다’ 쪽으로 기웁니다. 하지만 범위가 넓어 의미 있는 차이라고 단정할 수 없습니다.": "Holding density, income and the rest fixed, the result leans toward “slightly fewer”. But the range is too wide to call it a meaningful difference.",
 "발견 3": "Finding 3",
 "농촌(군)에서만 경향이 보입니다": "Only rural counties (gun) show the tendency",
-"군에서는 고령 인구가 많을수록 편의점이 적었습니다. 대도시(구)와 중소도시(시)에서는 그렇지 않았습니다.": "In counties, more elderly residents went with fewer stores. Not so in big-city districts (gu) or mid-sized cities (si).",
+"단순 비교에서 군은 고령 인구가 많을수록 편의점이 적었습니다. 조건을 맞추면 −0.28개로 방향은 같지만 범위(−0.70 ~ +0.14)가 넓어 확실하지 않습니다. 대도시(구)와 중소도시(시)에서는 이런 경향이 없었습니다.": "In a simple comparison, counties with more elderly residents had fewer stores. With controls the estimate is −0.28, the same direction, but the range (−0.70 to +0.14) is too wide to be sure. Big-city districts (gu) and mid-sized cities (si) showed no such pattern.",
 "숫자는 모두 ‘고령 비율이 10%p 높을 때 1,000명당 편의점이 몇 개 달라지는가’를 뜻합니다.": "All numbers are “how many more or fewer stores per 1,000 residents when the elderly share is 10 pp higher”.",
 "전국 226개 시군구에서 고령 비율만으로는 편의점 수를 가늠하기 어렵다.": "Across 226 districts, the elderly share alone cannot predict the number of convenience stores.",
 "도시와 농촌은 나눠서 봐야 한다. 섞어 보면 결과가 달라진다.": "Cities and countryside must be looked at separately; mixing them changes the result.",
 "농촌(군)에서는 고령 인구가 많을수록 편의점이 적은 경향이 있다.": "In rural counties (gun), more elderly residents tend to go with fewer convenience stores.",
 "“노인 때문에 편의점이 줄었다”(원인이라고 단정)": "“Older residents caused stores to close” (claims a cause)",
 "“어르신들은 편의점을 안 간다”(동네 평균으로 개인을 판단)": "“Older people don't go to convenience stores” (judges individuals from district averages)",
-"“앞으로 고령화되면 편의점이 사라진다”(한 시점 자료로 미래 예측)": "“As we age, convenience stores will disappear” (predicts the future from one snapshot)",
+"“앞으로 고령화되면 편의점이 사라진다”(한 시점 자료로 미래 예측)": "“As we age, convenience stores will disappear” (predicts the future from one snapshot)", "“노인이 많은 지역은 원래 편의점이 안 되는 곳이다”(지역 낙인, 폐점의 근거로 오용)": "“Aging areas are simply no place for convenience stores” (stigmatizes regions and could be misused to justify closures)",
 "말할 수 있는 것, 없는 것": "What we can and cannot say",
 "같은 결과라도 잘못 표현하면 데이터가 뒷받침하지 않는 주장이 됩니다.": "The same result, if phrased carelessly, can turn into a claim the data do not support.",
 "말하면 안 되는 것": "What we should not say",
@@ -2216,7 +2216,7 @@ function AnaHero(){
   return h('section',{className:'hero',id:'ana-top'},h('div',{className:'narrow'},
     h('p',{className:'eyebrow','data-n':'4'},'지도 분석'),
     h('h1',null,'고령 비율이 높은 지역이라고 편의점이 뚜렷하게 적지는 않았습니다'),
-    h('p',{className:'lead'},'전국 단위에서는 그렇습니다. 다만 군 지역만 따로 보면 고령 비율이 높을수록 편의점이 적은 경향이 나타났습니다. 지역별 결과는 아래 지도에서 확인할 수 있습니다.'),
+    h('p',{className:'lead'},'전국 단위에서는 그렇습니다. 다만 군 지역만 따로 보면 단순 비교에서 고령 비율이 높을수록 편의점이 적은 경향이 나타났습니다(인구밀도·소득 등 조건을 맞추면 불확실). 지역별 결과는 아래 지도에서 확인할 수 있습니다.'),
     h('div',{className:'ctas'},h('a',{className:'btn btn-primary',href:'#ana-map'},'지도로 보기'),h('a',{className:'btn btn-secondary',href:'#ana-verdict'},'최종 판정'))));
 }
 
@@ -2527,7 +2527,7 @@ function MiniSplit(){
 const LEARN=[
   {k:'발견 1',n:()=>L('범위 −0.08 ~ +0.03개: 모두 ‘의미 없는 차이(±0.1)’ 띠 안','Range −0.08 to +0.03: entirely inside the ±0.1 “no meaningful difference” band'),t:'단순 비교에서는 관계가 거의 없습니다',d:'고령 비율과 편의점 수만 놓고 보면 관계가 거의 나타나지 않습니다. 도시와 농촌이 한데 섞여 서로의 차이가 상쇄되기 때문입니다.',v:()=>h(MiniBand,{lo:-0.077,hi:0.029,b:-0.024})},
   {k:'발견 2',n:()=>L('최종(DML) 값 −0.06개, 범위 −0.27 ~ +0.15개: 띠 안팎에 걸침','Final (DML) estimate −0.06, range −0.27 to +0.15: straddles the band'),t:'조건을 맞추면 조금 적어지는 쪽이지만, 확실하지 않습니다',d:'인구밀도·소득 등을 맞추면 결과가 ‘조금 적다’ 쪽으로 기웁니다. 하지만 범위가 넓어 의미 있는 차이라고 단정할 수 없습니다.',v:()=>h(MiniBand,{lo:-0.266,hi:0.148,b:-0.059,on:true})},
-  {k:'발견 3',n:()=>L('군 82곳 −0.24개 · 구 69곳 +0.01개 · 시 75곳 +0.06개','Gun (82) −0.24 · Gu (69) +0.01 · Si (75) +0.06'),t:'농촌(군)에서만 경향이 보입니다',d:'군에서는 고령 인구가 많을수록 편의점이 적었습니다. 대도시(구)와 중소도시(시)에서는 그렇지 않았습니다.',v:()=>h(MiniSplit)},
+  {k:'발견 3',n:()=>L('단순 비교: 군 82곳 −0.24개 · 구 69곳 +0.01개 · 시 75곳 +0.06개','Simple comparison: Gun (82) −0.24 · Gu (69) +0.01 · Si (75) +0.06'),t:'농촌(군)에서만 경향이 보입니다',d:'단순 비교에서 군은 고령 인구가 많을수록 편의점이 적었습니다. 조건을 맞추면 −0.28개로 방향은 같지만 범위(−0.70 ~ +0.14)가 넓어 확실하지 않습니다. 대도시(구)와 중소도시(시)에서는 이런 경향이 없었습니다.',v:()=>h(MiniSplit)},
 ];
 function Learn(){
   return h('section',{className:'tile',id:'int-learn',style:{background:'var(--canvas)'}},h('div',{className:'container'},
@@ -2544,7 +2544,7 @@ const SAY=[
   {ok:true,t:'농촌(군)에서는 고령 인구가 많을수록 편의점이 적은 경향이 있다(단순 비교 기준, 조건을 맞추면 불확실).'},
   {ok:false,t:'“노인 때문에 편의점이 줄었다”(원인이라고 단정)'},
   {ok:false,t:'“어르신들은 편의점을 안 간다”(동네 평균으로 개인을 판단)'},
-  {ok:false,t:'“앞으로 고령화되면 편의점이 사라진다”(한 시점 자료로 미래 예측)'},
+  {ok:false,t:'“앞으로 고령화되면 편의점이 사라진다”(한 시점 자료로 미래 예측)'}, {ok:false,t:'“노인이 많은 지역은 원래 편의점이 안 되는 곳이다”(지역 낙인, 폐점의 근거로 오용)'},
 ];
 function Say(){
   const col=(ok,title)=>h('div',null,h('h3',null,title),
