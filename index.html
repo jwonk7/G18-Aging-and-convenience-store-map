@@ -822,7 +822,7 @@ const DICT={
 "검증": "Check",
 "합친 과정 보기": "See merge process",
 "도시·시골": "Urban vs rural",
-"판정": "Verdict",
+"판정": "Verdict", "통제변수": "Controls",
 "최종 판정": "Final verdict",
 "발견": "Findings",
 "말할 수 있는 것": "What we can say",
@@ -1560,7 +1560,7 @@ const SUBNAV={
   home:{title:'편의점 불빛 지도',links:[['개요','overview'],['배경','background'],['구성','guide'],['지도','map']],cta:['지도 보기','map']},
   hypothesis:{title:'가설',links:[['왜 다듬었나','hyp-why'],['영향 요인','hyp-map'],['질문','hyp-questions'],['기준','hyp-threshold']],cta:['영향 요인 보기','hyp-map']},
   data:{title:'데이터',links:[['출처','data-sources'],['합친 과정','data-flow'],['완성된 표','data-table'],['검증','data-check']],cta:['합친 과정 보기','data-flow']},
-  analysis:{title:'지도 분석',links:[['지도','ana-map'],['도시·시골','ana-type'],['판정','ana-verdict']],cta:['최종 판정','ana-verdict']},
+  analysis:{title:'지도 분석',links:[['지도','ana-map'],['도시·시골','ana-type'],['판정','ana-verdict'],['통제변수','ana-controls']],cta:['최종 판정','ana-verdict']},
   interpretation:{title:'해석',links:[['발견','int-learn'],['말할 수 있는 것','int-say'],['한계','int-care'],['다음 단계','int-next']],cta:['세 가지 발견','int-learn']},
 };
 function SubNav({page}){
@@ -2347,6 +2347,47 @@ const RESULTS=[
   {id:'ols',name:'조건을 맞춘 비교',m:'다중 회귀분석(OLS) + 강건 표준오차(HC3). 함께 넣은 변수: 인구밀도, 아파트 비율, 평균 소득, 성비, 도시·군 여부.',lo:-0.327,hi:-0.061,b:-0.194,how:'인구밀도, 소득, 아파트 비율, 성비, 도시·농촌 여부가 같다고 놓고 계산했습니다(회귀분석).',read:'편의점이 적어지는 방향으로 나왔지만, 범위가 회색 띠에 걸칩니다. ‘의미 있게 적다’고 하기에는 부족합니다.'},
   {id:'dml',name:'머신러닝으로 다시 확인',m:'이중 머신러닝(DML): 랜덤포레스트로 같은 조건의 영향을 걸러낸 뒤 남은 관계를 추정했습니다. 5겹 교차적합을 20번 반복해 중앙값을 사용했습니다.',lo:-0.266,hi:0.148,b:-0.059,how:'같은 조건을 머신러닝으로 더 유연하게 통제하고, 20번 반복한 결과의 중앙값을 썼습니다(DML). 이 값을 최종 결과로 삼았습니다.',read:'범위가 회색 띠 안팎에 넓게 걸쳐 있습니다. 적다고도, 차이가 없다고도 말할 수 없습니다.',main:true},
 ];
+
+const CSETS=[
+  {id:'none',k:['통제 없음','No controls'],b:-0.024,lo:-0.077,hi:0.029,d:['고령 비율 하나만 넣었습니다. 도시와 농촌이 섞여 서로의 차이가 상쇄됩니다.','Elderly share alone. Cities and counties are pooled, so their differences cancel out.']},
+  {id:'sig',k:['유의한 변수만','Significant only'],b:-0.165,lo:-0.28,hi:-0.05,d:['Week 3에서 유의했던 아파트 비율·성비만 넣었습니다. 인구밀도와 소득이 빠져 교란이 남습니다.','Only apartment share and sex ratio, which were significant in Week 3. Density and income are left out, so confounding remains.']},
+  {id:'mapB',k:['지도 B: 교란변수 5개','Map B: 5 confounders'],b:-0.194,lo:-0.327,hi:-0.061,d:['인과 다이어그램이 고른 교란변수(인구밀도·아파트·소득·성비·도시/군)를 직선 회귀로 통제했습니다.','The causal diagram’s confounders (density, apartments, income, sex ratio, city/county), adjusted in a linear regression.']},
+  {id:'mapC',k:['지도 C: DML (최종)','Map C: DML (final)'],b:-0.059,lo:-0.266,hi:0.148,main:true,d:['지도 B와 같은 변수를 머신러닝으로 더 유연하게 통제했습니다. 미리 정한 최종 결과입니다.','The same Map B variables, adjusted flexibly with machine learning. This is the pre-specified final result.']},
+  {id:'med',k:['지도 B + 경로 변수','Map B + pathways'],b:-0.358,lo:-0.481,hi:-0.235,bad:true,d:['1인가구와 슈퍼마켓까지 넣었습니다. 둘 다 고령화의 결과라 넣으면 안 되는 변수입니다(나쁜 통제).','Also holds one-person households and supermarkets fixed. Both are consequences of aging, so they should not be controlled (bad controls).']},
+  {id:'mapA',k:['지도 A: Week 3 여섯 변수','Map A: Week 3 six'],b:-0.408,lo:-0.53,hi:-0.286,bad:true,d:['Week 3의 여섯 특성을 그대로 넣었습니다. 슈퍼마켓이 들어가고 도시/군 구분은 빠집니다.','The six Week 3 characteristics as they were: supermarkets in, city/county type out.']},
+];
+function ControlSetTile(){
+  const [sel,setSel]=useState('mapC');
+  const ref=useRef(null); const W=useWidth(ref,760); const narrow=W<520; const P=narrow?14:30,ROW=46,TOP=40, lo=-0.6, hi=0.25;
+  const x=v=>P+(v-lo)/(hi-lo)*(W-2*P); const Hh=TOP+ROW*CSETS.length+36;
+  const c=CSETS.find(k=>k.id===sel);
+  const ticks=narrow?[-0.6,-0.4,-0.2,0,0.2]:[-0.6,-0.5,-0.4,-0.3,-0.2,-0.1,0,0.1,0.2];
+  const thr=c.hi<-0.1?L('구간 전체가 기준선(−0.1) 아래: 의미 있는 감소처럼 보입니다.','Whole interval below −0.1: it looks like a meaningful decline.'):(c.lo>-0.1&&c.hi<0.1)?L('구간 전체가 회색 띠 안: 의미 없는 차이처럼 보입니다.','Whole interval inside the band: it looks negligible.'):L('구간이 기준선에 걸침: 판단 보류입니다.','Interval crosses the threshold: too early to tell.');
+  return h('section',{className:'tile',id:'ana-controls',style:{background:'var(--canvas)'}},h('div',{className:'container'},
+    h('h2',{className:'tile-h'},L('통제변수를 바꾸면 답이 바뀝니다','Change the controls, change the answer')),
+    h('p',{className:'tile-sub'},L('같은 226곳, 같은 고령 비율인데도 무엇을 함께 넣느냐에 따라 추정치가 −0.02에서 −0.41까지 움직입니다. 세트를 눌러 비교해 보세요.','Same 226 districts, same elderly share: depending on what is held fixed, the estimate moves from −0.02 to −0.41. Tap a set to compare.')),
+    h('div',{className:'ucard tcard'},
+      h('div',{className:'toolbar light',role:'group','aria-label':L('통제변수 세트','Control set')},h('span',{className:'lbl'},L('통제','Controls')),
+        CSETS.map(k=>h('button',{key:k.id,className:'chip light','aria-pressed':sel===k.id,onClick:()=>setSel(k.id)},L(k.k[0],k.k[1])))),
+      h('div',{className:'tchart',ref},h('svg',{viewBox:`0 0 ${W} ${Hh}`,className:'tsvg',role:'img','aria-label':L('통제변수 세트별 추정치와 95% 범위','Estimate and 95% range by control set')},
+        h('rect',{x:x(-0.1),y:TOP-14,width:x(0.1)-x(-0.1),height:ROW*CSETS.length+8,style:{fill:'#e8e8ed'}}),
+        h('text',{x:(x(-0.1)+x(0.1))/2,y:TOP-22,textAnchor:'middle',className:'tl'},L('의미 없는 차이 (±0.1개)','No meaningful difference (±0.1)')),
+        ticks.map(t=>h('g',{key:t},h('line',{x1:x(t),x2:x(t),y1:TOP-8,y2:TOP+ROW*CSETS.length,style:{stroke:t===0?'#1d1d1f':'#d2d2d7',strokeWidth:t===0?1.2:1}}),
+          h('text',{x:x(t),y:TOP+ROW*CSETS.length+18,textAnchor:'middle',className:'tl'},(t>0?'+':t<0?'−':'')+Math.abs(t).toFixed(1)))),
+        CSETS.map((k,i)=>{const y=TOP+ROW*i+ROW/2, on=k.id===sel, col=on?(k.bad?'#c0392b':'var(--primary)'):'#c7c7cc';
+          return h('g',{key:k.id,style:{cursor:'pointer'},onClick:()=>setSel(k.id)},
+            h('rect',{x:P,y:y-ROW/2+2,width:W-2*P,height:ROW-4,style:{fill:'transparent'}}),
+            h('line',{x1:x(k.lo),x2:x(k.hi),y1:y,y2:y,style:{stroke:col,strokeWidth:on?6:4,strokeLinecap:'round'}}),
+            h('circle',{cx:x(k.b),cy:y,r:on?6:4,style:{fill:col}}),
+            on?h('text',{x:x(k.b),y:y-11,textAnchor:'middle',className:'tl',style:{fill:k.bad?'#c0392b':'var(--primary)',fontWeight:600,paintOrder:'stroke',stroke:'#fff',strokeWidth:4,strokeLinejoin:'round'}},(k.b<0?'−':'+')+Math.abs(k.b).toFixed(2)):null);}))),
+      h('p',{className:'axisnote'},L('위에서부터 버튼 순서와 같습니다. 막대 = 95% 범위, 점 = 추정치. 단위: 고령 비율 10%p당 1,000명당 편의점 수 변화.','Rows follow the button order. Bar = 95% range, dot = estimate. Unit: change in stores per 1,000 per 10 pp of elderly share.')),
+      h('div',{className:'verdict','aria-live':'polite'},
+        h('p',{className:'vt'},L(c.k[0],c.k[1]),c.main?h('span',{className:'badge'},L('최종','Final')):null),
+        h('p',{className:'why'},L(c.d[0],c.d[1])),
+        h('p',{className:'why',style:{color:'var(--ink)'}},(c.b<0?'−':'+')+Math.abs(c.b).toFixed(2)+' ('+(c.lo<0?'−':'+')+Math.abs(c.lo).toFixed(2)+' ~ '+(c.hi<0?'−':'+')+Math.abs(c.hi).toFixed(2)+') · '+thr),
+        c.bad?h('p',{className:'why'},L('이렇게 하면 통념이 ‘증명된’ 것처럼 보이지만, 변수 선택이 만든 결과입니다.','This makes the belief look proven, but the result is produced by the choice of variables.')):null)
+    )));
+}
 function VerdictTile(){
   const [sel,setSel]=useState('dml');
   const ref=useRef(null); const W=useWidth(ref,760); const narrow=W<520; const P=narrow?14:30,ROW=60,TOP=48, lo=-0.4, hi=0.25;
@@ -2405,12 +2446,18 @@ const TESTS=[
   {id:'med',scope:'all',src:'team',ref:true,name:['참고: + 1인가구·슈퍼마켓','Reference: + one-person households & supermarkets'],what:['질문 2의 경로 변수까지 통제 (경로를 막으므로 주 결과 아님)','Also controls the question-2 pathways (blocks them, so not the main result)'],n:226,b:-0.358,lo:-0.481,hi:-0.235,p:0.0001},
   {id:'rep_ols',scope:'all',src:'team',rep:true,name:['재구축: 조건 맞춘 회귀','Rebuild: controlled regression'],what:['2026 재구축 자료 225곳, 같은 식 (OLS, HC3)','2026 rebuilt data, 225 districts, same model (OLS, HC3)'],n:225,b:-0.181,lo:-0.32,hi:-0.04,p:0.0102},
   {id:'rep_dml',scope:'all',src:'team',rep:true,name:['재구축: DML','Rebuild: DML'],what:['2026 재구축 자료 225곳, 랜덤포레스트','2026 rebuilt data, 225 districts, random forest'],n:225,b:-0.042,lo:-0.246,hi:0.163,p:0.69},
+  {id:'nb',scope:'all',src:'team',sens:true,name:['민감도: 음이항 회귀','Check: negative binomial'],what:['편의점 개수 · 인구 offset · 1,000명당으로 환산 (율비 0.835)','Store counts with a population offset, shown per 1,000 (rate ratio 0.835)'],n:226,b:-0.185,lo:-0.292,hi:-0.063,p:0.0038},
+  {id:'clu',scope:'all',src:'team',sens:true,name:['민감도: 시도 군집 표준오차','Check: province-clustered errors'],what:['조건 맞춘 회귀와 같은 식, 15개 시도로 군집 (잔차 Moran’s I = 0.25)','Same controlled regression, clustered by 15 provinces (residual Moran’s I = 0.25)'],n:226,b:-0.194,lo:-0.342,hi:-0.047,p:0.0134},
+  {id:'tour_ols',scope:'all',src:'team',sens:true,name:['민감도: 관광·업무지구 6곳 제외 (OLS)','Check: 6 tourist/business districts removed (OLS)'],what:['서울·부산 중구, 양양, 고성, 가평, 속초 제외','Without Jung-gu (Seoul, Busan), Yangyang, Goseong, Gapyeong, Sokcho'],n:220,b:-0.195,lo:-0.311,hi:-0.078,p:0.001},
+  {id:'tour_dml',scope:'all',src:'team',sens:true,name:['민감도: 관광·업무지구 6곳 제외 (DML)','Check: 6 tourist/business districts removed (DML)'],what:['같은 6곳 제외, 랜덤포레스트 DML','Same six removed, random-forest DML'],n:220,b:-0.082,lo:-0.226,hi:0.063,p:0.268},
   {id:'gu',scope:'gu',src:'team',name:['구만: 단순 회귀 (HC3)','Gu only: simple regression (HC3)'],what:['대도시 자치구','Big-city districts'],n:69,b:0.006,lo:-0.262,hi:0.274,p:0.9628},
   {id:'guc',scope:'gu',src:'team',name:['구만: 조건 맞춤','Gu only: with controls'],what:['구 안에서 인구밀도·아파트·소득·성비 통제','Density, apartments, income, sex ratio held fixed'],n:69,b:0.012,lo:-0.267,hi:0.291,p:0.9337},
   {id:'si',scope:'si',src:'team',name:['시만: 단순 회귀 (HC3)','Si only: simple regression (HC3)'],what:['중소도시','Mid-sized cities'],n:75,b:0.064,lo:-0.043,hi:0.17,p:0.2411},
   {id:'sic',scope:'si',src:'team',name:['시만: 조건 맞춤','Si only: with controls'],what:['시 안에서 인구밀도·아파트·소득·성비 통제','Density, apartments, income, sex ratio held fixed'],n:75,b:-0.021,lo:-0.269,hi:0.228,p:0.8702},
   {id:'gun',scope:'gun',src:'team',name:['군만: 단순 회귀 (HC3)','Gun only: simple regression (HC3)'],what:['시골 군','Rural counties'],n:82,b:-0.237,lo:-0.371,hi:-0.102,p:0.0006},
   {id:'gunc',scope:'gun',src:'team',name:['군만: 조건 맞춤','Gun only: with controls'],what:['군 안에서 인구밀도·아파트·소득·성비 통제','Density, apartments, income, sex ratio held fixed'],n:82,b:-0.279,lo:-0.70,hi:0.142,p:0.1939},
+  {id:'gundml',scope:'gun',src:'team',name:['군만: DML','Gun only: DML'],what:['군 안에서 같은 통제, 랜덤포레스트','Same controls within counties, random forest'],n:82,b:-0.205,lo:-0.533,hi:0.124,p:0.222},
+  {id:'gunint',scope:'gun',src:'team',name:['226곳 상호작용 모형: 군 기울기','Pooled interaction model: county slope'],what:['통제변수가 도시·군에서 같게 작용한다고 가정 (시도 군집 시 −0.53 ~ −0.18)','Assumes controls act the same in cities and counties (clustered: −0.53 to −0.18)'],n:226,b:-0.35,lo:-0.504,hi:-0.195,p:0.00005},
 ];
 const SCOPES=[['all',['전체','All'],226],['gu',['구','Gu'],69],['si',['시','Si'],75],['gun',['군','Gun'],82]];
 const isSig=t=>t.p!=null?t.p<0.05:(t.lo!=null?(t.hi<0||t.lo>0):false);
@@ -2491,7 +2538,7 @@ function Dashboard(){
 }
 
 function AnalysisPage(){
-  return h(React.Fragment,null,h(AnaHero),h(QuadTile),h(ScatterTile),h(VerdictTile),h(Dashboard));
+  return h(React.Fragment,null,h(AnaHero),h(QuadTile),h(ScatterTile),h(VerdictTile),h(ControlSetTile),h(Dashboard));
 }
 
 /* ---------- 해석 page ---------- */
